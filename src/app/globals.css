@@ -1,0 +1,217 @@
+@import "tailwindcss";
+
+/*
+ * THEME TOKENS
+ * All colours are CSS variables, switched by <html data-theme="dark|light">.
+ * Components use Tailwind classes such as `bg-card`, `text-fg`, `border-line`
+ * which map to these variables (see @theme below). Dark is the default.
+ */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root,
+:root[data-theme="dark"] {
+  --surface: #07111f;
+  --surface-2: #0b1726;
+  --card: #10243a;
+  --card-2: #142c46;
+  --fg: #f8fafc;
+  --muted: #a9b6c8;
+  --subtle: #7d8da3;
+  --line: rgba(248, 250, 252, 0.08);
+  --line-strong: rgba(248, 250, 252, 0.16);
+  --gold: #c9a227;
+  --gold-ink: #dcbb4f;
+  --gold-soft: rgba(201, 162, 39, 0.12);
+  --blue: #2563eb;
+  --blue-ink: #8fb0ff;
+  --blue-soft: rgba(37, 99, 235, 0.16);
+  --primary: #c9a227;
+  --primary-hover: #d6b23c;
+  --primary-fg: #07111f;
+  --danger: #fca5a5;
+  --danger-soft: rgba(248, 113, 113, 0.12);
+  --header: rgba(7, 17, 31, 0.82);
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 24px 48px -28px rgba(0, 0, 0, 0.7);
+}
+
+:root[data-theme="light"] {
+  --surface: #f7f8fa;
+  --surface-2: #eef1f5;
+  --card: #ffffff;
+  --card-2: #f3f5f8;
+  --fg: #082a46;
+  --muted: #4a5e75;
+  --subtle: #6b7c90;
+  --line: rgba(8, 42, 70, 0.1);
+  --line-strong: rgba(8, 42, 70, 0.2);
+  --gold: #c9a227;
+  --gold-ink: #866a0c; /* darker gold so text stays readable on white */
+  --gold-soft: rgba(201, 162, 39, 0.14);
+  --blue: #2563eb;
+  --blue-ink: #1d4ed8;
+  --blue-soft: rgba(37, 99, 235, 0.08);
+  --primary: #082a46;
+  --primary-hover: #0d3a5f;
+  --primary-fg: #f8fafc;
+  --danger: #b91c1c;
+  --danger-soft: rgba(185, 28, 28, 0.08);
+  --header: rgba(247, 248, 250, 0.86);
+  --shadow-card: 0 1px 2px rgba(8, 42, 70, 0.04), 0 18px 36px -24px rgba(8, 42, 70, 0.22);
+}
+
+@theme inline {
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-card: var(--card);
+  --color-card-2: var(--card-2);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-gold: var(--gold);
+  --color-gold-ink: var(--gold-ink);
+  --color-gold-soft: var(--gold-soft);
+  --color-blue: var(--blue);
+  --color-blue-ink: var(--blue-ink);
+  --color-blue-soft: var(--blue-soft);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-fg: var(--primary-fg);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-header: var(--header);
+
+  --shadow-card: var(--shadow-card);
+
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-cormorant), "Georgia", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--surface);
+  color: var(--fg);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+::selection {
+  background: var(--gold-soft);
+}
+
+/* ------------------------------------------------------------------ */
+/* Range slider                                                        */
+/* `--fill` (0–100%) is set inline so the track shows progress.        */
+/* ------------------------------------------------------------------ */
+.range {
+  --track-h: 6px;
+  --thumb: 24px;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 44px; /* large touch target */
+  background: transparent;
+  cursor: pointer;
+}
+.range-lg {
+  --track-h: 10px;
+  --thumb: 36px;
+  height: 56px;
+}
+.range:focus-visible {
+  outline: none;
+}
+.range::-webkit-slider-runnable-track {
+  height: var(--track-h);
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--gold) var(--fill), var(--line-strong) var(--fill));
+}
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: var(--thumb);
+  height: var(--thumb);
+  margin-top: calc((var(--track-h) - var(--thumb)) / 2);
+  border-radius: 999px;
+  background: var(--card);
+  border: 3px solid var(--gold);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s ease;
+}
+.range:active::-webkit-slider-thumb {
+  transform: scale(1.08);
+}
+.range:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 6px var(--gold-soft);
+}
+.range::-moz-range-track {
+  height: var(--track-h);
+  border-radius: 999px;
+  background: var(--line-strong);
+}
+.range::-moz-range-progress {
+  height: var(--track-h);
+  border-radius: 999px;
+  background: var(--gold);
+}
+.range::-moz-range-thumb {
+  width: var(--thumb);
+  height: var(--thumb);
+  border-radius: 999px;
+  background: var(--card);
+  border: 3px solid var(--gold);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+.range:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 6px var(--gold-soft);
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion                                                              */
+/* ------------------------------------------------------------------ */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes value-in {
+  from {
+    opacity: 0.35;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.animate-value {
+  animation: value-in 0.35s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
