@@ -4,6 +4,7 @@ import { useId, useState, type CSSProperties } from "react";
 import { CircleAlert } from "lucide-react";
 import type { NumericRange } from "@/types/finance";
 import { parseNumericInput } from "@/lib/format";
+import { useI18n } from "@/hooks/use-i18n";
 import { cn } from "@/lib/ui";
 
 interface SliderFieldProps {
@@ -47,6 +48,7 @@ export function SliderField({
   inputMode = "numeric",
   large = false,
 }: SliderFieldProps) {
+  const { t } = useI18n();
   const id = useId();
   const inputId = `${id}-input`;
   const messageId = `${id}-message`;
@@ -64,7 +66,7 @@ export function SliderField({
         </label>
         <div
           className={cn(
-            "flex items-center rounded-xl border bg-surface-2 transition-colors focus-within:border-gold",
+            "flex items-center rounded-xl border bg-surface-2 transition-colors focus-within:border-accent",
             error ? "border-danger/70" : "border-line-strong",
             large ? "h-14 px-4" : "h-11 px-3",
           )}
@@ -99,7 +101,7 @@ export function SliderField({
       <div>
         <input
           type="range"
-          aria-label={`${label} slider`}
+          aria-label={t.calculator.sliderLabel(label)}
           min={range.min}
           max={range.max}
           step={range.step}
@@ -114,7 +116,7 @@ export function SliderField({
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-2" role="group" aria-label={`${label} quick select`}>
+      <div className="flex flex-wrap gap-2" role="group" aria-label={t.calculator.quickSelect(label)}>
         {quickPicks.map((pick) => {
           const active = value === pick;
           return (
@@ -125,11 +127,11 @@ export function SliderField({
               onClick={() => onChange(pick)}
               className={cn(
                 "rounded-full border font-semibold tabular-nums transition-all duration-200",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
                 large ? "min-h-13 px-5 text-base" : "min-h-10 px-3.5 text-sm",
                 active
-                  ? "border-gold bg-gold-soft text-gold-ink"
-                  : "border-line-strong text-muted hover:border-gold/50 hover:text-fg",
+                  ? "border-accent bg-accent-soft text-accent-ink"
+                  : "border-line-strong text-muted hover:border-accent/50 hover:text-fg",
               )}
             >
               {formatQuickPick(pick)}

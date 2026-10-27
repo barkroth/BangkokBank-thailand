@@ -9,23 +9,36 @@ import type { InsuranceOption, InsuranceOptionId } from "@/types/finance";
 export const INSURANCE_OPTIONS: InsuranceOption[] = [
   {
     id: "none",
-    name: "No insurance",
-    shortDescription: "Loan only, without a protection add-on.",
+    name: { en: "No insurance", th: "ไม่เลือกประกัน" },
+    shortDescription: { en: "Loan only, without a protection add-on.", th: "สินเชื่อเพียงอย่างเดียว ไม่มีประกันเสริม" },
     coverage: [],
     annualPremiumPercent: 0,
   },
   {
     id: "loan-protection",
-    name: "Loan Protection",
-    shortDescription: "Helps cover the outstanding balance in case of death.",
-    coverage: ["Death (any cause)", "Outstanding balance cover"],
+    name: { en: "Loan Protection", th: "ประกันคุ้มครองสินเชื่อ" },
+    shortDescription: {
+      en: "Helps cover the outstanding balance in case of death.",
+      th: "ช่วยคุ้มครองยอดหนี้คงเหลือในกรณีเสียชีวิต",
+    },
+    coverage: [
+      { en: "Death (any cause)", th: "เสียชีวิต (ทุกสาเหตุ)" },
+      { en: "Outstanding balance cover", th: "คุ้มครองยอดหนี้คงเหลือ" },
+    ],
     annualPremiumPercent: 0.45,
   },
   {
     id: "loan-protection-plus",
-    name: "Loan Protection Plus",
-    shortDescription: "Adds total permanent disability and critical illness cover.",
-    coverage: ["Death (any cause)", "Total permanent disability", "Selected critical illnesses"],
+    name: { en: "Loan Protection Plus", th: "ประกันคุ้มครองสินเชื่อ พลัส" },
+    shortDescription: {
+      en: "Adds total permanent disability and critical illness cover.",
+      th: "เพิ่มความคุ้มครองทุพพลภาพถาวรสิ้นเชิงและโรคร้ายแรง",
+    },
+    coverage: [
+      { en: "Death (any cause)", th: "เสียชีวิต (ทุกสาเหตุ)" },
+      { en: "Total permanent disability", th: "ทุพพลภาพถาวรสิ้นเชิง" },
+      { en: "Selected critical illnesses", th: "โรคร้ายแรงที่ระบุ" },
+    ],
     annualPremiumPercent: 0.8,
   },
 ];

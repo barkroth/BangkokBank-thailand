@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { Calculator, ChevronDown, CircleAlert } from "lucide-react";
 import type { LoanCalculatorController } from "@/hooks/use-loan-calculator";
-import { formatPercent, formatTHB, formatTenure } from "@/lib/format";
+import { formatPercent, formatTHB } from "@/lib/format";
+import { useI18n } from "@/hooks/use-i18n";
 import { cn } from "@/lib/ui";
 import { DemoBadge } from "@/components/ui/DemoBadge";
 import { PaymentSchedule } from "@/components/calculator/PaymentSchedule";
@@ -15,15 +16,16 @@ interface CalculatorResultsProps {
 
 export function CalculatorResults({ controller, large = false }: CalculatorResultsProps) {
   const { result, errors, input, insurance, product } = controller;
+  const { t, text } = useI18n();
   const [showSchedule, setShowSchedule] = useState(false);
 
   if (!result) {
     return (
       <div className="flex min-h-80 flex-col items-center justify-center rounded-3xl border border-dashed border-line-strong bg-card/60 p-8 text-center">
-        <span className="mb-4 grid size-14 place-items-center rounded-full bg-gold-soft text-gold-ink">
+        <span className="mb-4 grid size-14 place-items-center rounded-full bg-accent-soft text-accent-ink">
           <Calculator className="size-6" aria-hidden />
         </span>
-        <h3 className="font-display text-2xl font-semibold text-fg">Complete the details to see an estimate</h3>
+        <h3 className="font-display text-2xl font-semibold text-fg">{t.results.emptyTitle}</h3>
         <ul className="mt-4 space-y-1.5 text-sm text-muted">
           {Object.values(errors).map((message) => (
             <li key={message} className="flex items-center justify-center gap-1.5">
@@ -39,21 +41,21 @@ export function CalculatorResults({ controller, large = false }: CalculatorResul
   const [whole, cents] = formatTHB(result.monthlyInstallment).split(".");
 
   const segments = [
-    { label: "Principal", value: result.principal, className: "bg-blue" },
-    { label: "Interest", value: result.totalInterest, className: "bg-gold" },
-    { label: "Insurance", value: result.totalInsurance, className: "bg-blue-ink/70" },
-    { label: "Fees", value: result.fees, className: "bg-subtle" },
+    { label: t.results.principal, value: result.principal, className: "bg-seg-1" },
+    { label: t.results.interest, value: result.totalInterest, className: "bg-seg-2" },
+    { label: t.results.insurance, value: result.totalInsurance, className: "bg-seg-3" },
+    { label: t.results.fees, value: result.fees, className: "bg-seg-4" },
   ].filter((segment) => segment.value > 0);
 
   const breakdown = [
-    { label: "Principal", value: result.principal, note: "Amount borrowed" },
-    { label: "Total interest", value: result.totalInterest, note: `${formatPercent(input.annualRate ?? 0)} p.a. (demo)` },
+    { label: t.results.principal, value: result.principal, note: t.results.principalNote },
+    { label: t.results.totalInterest, value: result.totalInterest, note: t.results.interestNote(formatPercent(input.annualRate ?? 0)) },
     {
-      label: "Insurance cost",
+      label: t.results.insuranceCost,
       value: result.totalInsurance,
-      note: result.totalInsurance > 0 ? insurance.name : "Not selected",
+      note: result.totalInsurance > 0 ? text(insurance.name) : t.results.notSelected,
     },
-    { label: "Fees", value: result.fees, note: `${product.fee.label}, one-time` },
+    { label: t.results.fees, value: result.fees, note: t.results.feeNote(text(product.fee.label)) },
   ];
 
   return (
@@ -61,12 +63,12 @@ export function CalculatorResults({ controller, large = false }: CalculatorResul
       {/* Headline figure */}
       <div className="relative border-b border-line p-6 sm:p-8">
         <div
-          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-gold/70 to-transparent"
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-accent/70 to-transparent"
           aria-hidden
         />
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <p className={cn("font-semibold text-muted", large ? "text-lg" : "text-sm")}>Estimated monthly instalment</p>
-          <DemoBadge>Illustrative</DemoBadge>
+          <p className={cn("font-semibold text-muted", large ? "text-lg" : "text-sm")}>{t.results.estimated}</p>
+          <DemoBadge>{t.results.illustrative}</DemoBadge>
         </div>
 
         <p
@@ -82,11 +84,11 @@ export function CalculatorResults({ controller, large = false }: CalculatorResul
         </p>
 
         <p className={cn("mt-3 text-muted", large ? "text-lg" : "text-sm")}>
-          for {formatTenure(input.tenureMonths ?? 0)}
+          {t.results.forTenure(input.tenureMonths ?? 0)}
           {result.monthlyInsurance > 0 && (
             <>
               {" "}
-              · includes {formatTHB(result.monthlyInsurance)} insurance
+              · {t.results.includesInsurance(formatTHB(result.monthlyInsurance))}
             </>
           )}
         </p>
@@ -94,7 +96,7 @@ export function CalculatorResults({ controller, large = false }: CalculatorResul
 
       {/* Breakdown */}
       <div className="p-6 sm:p-8">
-        <div className="flex h-2.5 w-full overflow-hidden rounded-full bg-line" role="img" aria-label="Cost composition">
+        <div className="flex h-2.5 w-full overflow-hidden rounded-full bg-line" role="img" aria-label={t.results.costComposition}>
           {segments.map((segment) => (
             <div
               key={segment.label}
@@ -125,8 +127,8 @@ export function CalculatorResults({ controller, large = false }: CalculatorResul
             </div>
           ))}
           <div className="flex items-baseline justify-between gap-4 pt-4">
-            <dt className={cn("font-semibold text-fg", large ? "text-xl" : "text-base")}>Total repayment</dt>
-            <dd className={cn("font-semibold tabular-nums text-gold-ink", large ? "text-3xl" : "text-2xl")}>
+            <dt className={cn("font-semibold text-fg", large ? "text-xl" : "text-base")}>{t.results.totalRepayment}</dt>
+            <dd className={cn("font-semibold tabular-nums text-accent-ink", large ? "text-3xl" : "text-2xl")}>
               {formatTHB(result.totalRepayment)}
             </dd>
           </div>
@@ -138,19 +140,18 @@ export function CalculatorResults({ controller, large = false }: CalculatorResul
           aria-expanded={showSchedule}
           aria-controls="payment-schedule"
           className={cn(
-            "mt-6 flex w-full items-center justify-between rounded-2xl border border-line-strong px-4 font-semibold text-fg transition-colors hover:border-gold/60",
+            "mt-6 flex w-full items-center justify-between rounded-2xl border border-line-strong px-4 font-semibold text-fg transition-colors hover:border-accent/60",
             large ? "min-h-14 text-base" : "min-h-12 text-sm",
           )}
         >
-          {showSchedule ? "Hide payment schedule" : "View payment schedule"}
+          {showSchedule ? t.results.hideSchedule : t.results.viewSchedule}
           <ChevronDown className={cn("size-5 transition-transform duration-300", showSchedule && "rotate-180")} aria-hidden />
         </button>
 
         {showSchedule && <PaymentSchedule schedule={result.schedule} />}
 
         <p className="mt-5 text-xs leading-relaxed text-subtle">
-          Prototype calculation using demo data. Figures are estimates for discussion only and are not an offer, quotation or
-          approval.
+          {t.results.disclaimer}
         </p>
       </div>
     </div>

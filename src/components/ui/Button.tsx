@@ -1,19 +1,19 @@
 import type { ButtonHTMLAttributes } from "react";
 import { cn } from "@/lib/ui";
 
-export type ButtonVariant = "primary" | "secondary" | "ghost" | "outline-gold";
+export type ButtonVariant = "primary" | "secondary" | "ghost" | "outline-accent";
 export type ButtonSize = "sm" | "md" | "lg" | "xl";
 
 const base =
   "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 " +
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-surface " +
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface " +
   "disabled:pointer-events-none disabled:opacity-50 select-none";
 
 const variants: Record<ButtonVariant, string> = {
   primary: "bg-primary text-primary-fg hover:bg-primary-hover shadow-card",
-  secondary: "border border-line-strong bg-card text-fg hover:border-gold/60 hover:bg-card-2",
+  secondary: "border border-line-strong bg-card text-fg hover:border-accent/60 hover:bg-card-2",
   ghost: "text-muted hover:bg-card hover:text-fg",
-  "outline-gold": "border border-gold/60 text-gold-ink hover:bg-gold-soft",
+  "outline-accent": "border border-accent/60 text-accent-ink hover:bg-accent-soft",
 };
 
 const sizes: Record<ButtonSize, string> = {

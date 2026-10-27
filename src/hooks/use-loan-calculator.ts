@@ -6,6 +6,7 @@ import { DEFAULT_PRODUCT_ID, getLoanProduct } from "@/data/loan-products";
 import { DEFAULT_INSURANCE_ID, getInsuranceOption } from "@/data/insurance-options";
 import { calculateLoan } from "@/lib/loan-calculator";
 import { hasErrors, validateCalculatorInput } from "@/lib/validation";
+import { useI18n } from "@/hooks/use-i18n";
 
 function defaultsFor(productId: LoanProductId, insuranceId: InsuranceOptionId = DEFAULT_INSURANCE_ID): CalculatorInput {
   const product = getLoanProduct(productId);
@@ -27,7 +28,8 @@ export function useLoanCalculator() {
 
   const product = getLoanProduct(input.productId);
   const insurance = getInsuranceOption(input.insuranceId);
-  const errors = useMemo(() => validateCalculatorInput(input, product), [input, product]);
+  const { t } = useI18n();
+  const errors = useMemo(() => validateCalculatorInput(input, product, t.validation), [input, product, t]);
 
   const result: LoanCalculationResult | null = useMemo(() => {
     if (hasErrors(errors) || input.amount === null || input.tenureMonths === null || input.annualRate === null) {

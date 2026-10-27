@@ -10,7 +10,7 @@ import type { Theme } from "@/types/finance";
  */
 
 export const THEME_STORAGE_KEY = "sales-companion-theme";
-export const DEFAULT_THEME: Theme = "dark";
+export const DEFAULT_THEME: Theme = "light";
 
 export const THEME_INIT_SCRIPT = `(function(){try{var t=localStorage.getItem("${THEME_STORAGE_KEY}");if(t!=="light"&&t!=="dark"){t="${DEFAULT_THEME}"}document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t}catch(e){}})();`;
 
@@ -22,7 +22,7 @@ export function subscribeToTheme(listener: () => void): () => void {
 }
 
 export function getThemeSnapshot(): Theme {
-  return document.documentElement.dataset.theme === "light" ? "light" : "dark";
+  return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
 }
 
 export function getServerThemeSnapshot(): Theme {

@@ -2,64 +2,99 @@
 
 /*
  * THEME TOKENS
- * All colours are CSS variables, switched by <html data-theme="dark|light">.
+ * All colours are CSS variables, switched by <html data-theme="light|dark">.
  * Components use Tailwind classes such as `bg-card`, `text-fg`, `border-line`
- * which map to these variables (see @theme below). Dark is the default.
+ * which map to these variables (see @theme below).
+ *
+ * Palette: brand navy (#002850) + action blue (#0064ff) + white.
+ * Light is the default. `.on-navy` re-points the variables to light-on-navy
+ * values for any block that sits on the brand-navy background (header, hero,
+ * campaign banner, footer), in both themes.
  */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 :root,
+:root[data-theme="light"] {
+  --brand: #002850;
+  --surface: #ffffff;
+  --surface-2: #eef4fb;
+  --card: #ffffff;
+  --card-2: #f3f7fc;
+  --fg: #002850;
+  --muted: #3f5671;
+  --subtle: #62788f;
+  --line: rgba(0, 40, 80, 0.12);
+  --line-strong: rgba(0, 40, 80, 0.22);
+  --accent: #0064ff;
+  --accent-ink: #0057e0; /* blue text on white, AA contrast */
+  --accent-soft: rgba(0, 100, 255, 0.09);
+  --blue: #0064ff;
+  --blue-ink: #0057e0;
+  --blue-soft: rgba(0, 100, 255, 0.09);
+  --primary: #0064ff;
+  --primary-hover: #0052d6;
+  --primary-fg: #ffffff;
+  --danger: #b91c1c;
+  --danger-soft: rgba(185, 28, 28, 0.08);
+  --seg-1: #002850;
+  --seg-2: #0064ff;
+  --seg-3: #6aa6ff;
+  --seg-4: #b6c8de;
+  --shadow-card: 0 1px 2px rgba(0, 40, 80, 0.05), 0 18px 36px -24px rgba(0, 40, 80, 0.25);
+}
+
 :root[data-theme="dark"] {
-  --surface: #07111f;
-  --surface-2: #0b1726;
-  --card: #10243a;
-  --card-2: #142c46;
+  --surface: #00182f;
+  --surface-2: #001f3d;
+  --card: #002850;
+  --card-2: #06336a;
   --fg: #f8fafc;
-  --muted: #a9b6c8;
-  --subtle: #7d8da3;
-  --line: rgba(248, 250, 252, 0.08);
-  --line-strong: rgba(248, 250, 252, 0.16);
-  --gold: #c9a227;
-  --gold-ink: #dcbb4f;
-  --gold-soft: rgba(201, 162, 39, 0.12);
-  --blue: #2563eb;
-  --blue-ink: #8fb0ff;
-  --blue-soft: rgba(37, 99, 235, 0.16);
-  --primary: #c9a227;
-  --primary-hover: #d6b23c;
-  --primary-fg: #07111f;
+  --muted: #b9c9de;
+  --subtle: #8ea5c2;
+  --line: rgba(248, 250, 252, 0.1);
+  --line-strong: rgba(248, 250, 252, 0.2);
+  --accent: #4d94ff;
+  --accent-ink: #8db8ff;
+  --accent-soft: rgba(77, 148, 255, 0.16);
+  --blue: #4d94ff;
+  --blue-ink: #8db8ff;
+  --blue-soft: rgba(77, 148, 255, 0.16);
+  --primary: #0064ff;
+  --primary-hover: #2b7fff;
+  --primary-fg: #ffffff;
   --danger: #fca5a5;
   --danger-soft: rgba(248, 113, 113, 0.12);
-  --header: rgba(7, 17, 31, 0.82);
+  --seg-1: #0064ff;
+  --seg-2: #8db8ff;
+  --seg-3: #d3e3ff;
+  --seg-4: #5d7898;
   --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 24px 48px -28px rgba(0, 0, 0, 0.7);
 }
 
-:root[data-theme="light"] {
-  --surface: #f7f8fa;
-  --surface-2: #eef1f5;
-  --card: #ffffff;
-  --card-2: #f3f5f8;
-  --fg: #082a46;
-  --muted: #4a5e75;
-  --subtle: #6b7c90;
-  --line: rgba(8, 42, 70, 0.1);
-  --line-strong: rgba(8, 42, 70, 0.2);
-  --gold: #c9a227;
-  --gold-ink: #866a0c; /* darker gold so text stays readable on white */
-  --gold-soft: rgba(201, 162, 39, 0.14);
-  --blue: #2563eb;
-  --blue-ink: #1d4ed8;
-  --blue-soft: rgba(37, 99, 235, 0.08);
-  --primary: #082a46;
-  --primary-hover: #0d3a5f;
-  --primary-fg: #f8fafc;
-  --danger: #b91c1c;
-  --danger-soft: rgba(185, 28, 28, 0.08);
-  --header: rgba(247, 248, 250, 0.86);
-  --shadow-card: 0 1px 2px rgba(8, 42, 70, 0.04), 0 18px 36px -24px rgba(8, 42, 70, 0.22);
+/* Light-on-navy values, used on every block that sits on the brand navy. */
+.on-navy,
+.site-header {
+  --surface: #002850;
+  --surface-2: #00306a;
+  --card: rgba(248, 250, 252, 0.08);
+  --card-2: rgba(248, 250, 252, 0.13);
+  --fg: #f8fafc;
+  --muted: #c3d2e6;
+  --subtle: #9db3cf;
+  --line: rgba(248, 250, 252, 0.14);
+  --line-strong: rgba(248, 250, 252, 0.28);
+  --accent: #4d94ff;
+  --accent-ink: #9cc3ff;
+  --accent-soft: rgba(77, 148, 255, 0.2);
+  --blue-ink: #9cc3ff;
+  --primary: #0064ff;
+  --primary-hover: #2b7fff;
+  --primary-fg: #ffffff;
+  --shadow-card: 0 18px 40px -26px rgba(0, 0, 0, 0.6);
 }
 
 @theme inline {
+  --color-brand: var(--brand);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
   --color-card: var(--card);
@@ -69,9 +104,9 @@
   --color-subtle: var(--subtle);
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
-  --color-gold: var(--gold);
-  --color-gold-ink: var(--gold-ink);
-  --color-gold-soft: var(--gold-soft);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
   --color-blue: var(--blue);
   --color-blue-ink: var(--blue-ink);
   --color-blue-soft: var(--blue-soft);
@@ -80,12 +115,16 @@
   --color-primary-fg: var(--primary-fg);
   --color-danger: var(--danger);
   --color-danger-soft: var(--danger-soft);
-  --color-header: var(--header);
+  --color-seg-1: var(--seg-1);
+  --color-seg-2: var(--seg-2);
+  --color-seg-3: var(--seg-3);
+  --color-seg-4: var(--seg-4);
 
   --shadow-card: var(--shadow-card);
 
-  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-cormorant), "Georgia", serif;
+  /* Latin fonts first; Thai glyphs fall back per character to the Thai fonts. */
+  --font-sans: var(--font-manrope), var(--font-noto-thai), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-cormorant), var(--font-noto-serif-thai), "Georgia", serif;
 }
 
 html {
@@ -99,12 +138,27 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* ------------------------------------------------------------------ */
+/* Site header: fixed; transparent over the navy hero, solid navy once */
+/* the page is scrolled.                                               */
+/* ------------------------------------------------------------------ */
+.site-header {
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+.site-header[data-solid="true"] {
+  background-color: #002850;
+  border-bottom-color: rgba(248, 250, 252, 0.1);
+  box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.6);
+}
+
 section[id] {
   scroll-margin-top: 5.5rem;
 }
 
 ::selection {
-  background: var(--gold-soft);
+  background: var(--accent-soft);
 }
 
 /* ------------------------------------------------------------------ */
@@ -132,7 +186,7 @@ section[id] {
 .range::-webkit-slider-runnable-track {
   height: var(--track-h);
   border-radius: 999px;
-  background: linear-gradient(to right, var(--gold) var(--fill), var(--line-strong) var(--fill));
+  background: linear-gradient(to right, var(--accent) var(--fill), var(--line-strong) var(--fill));
 }
 .range::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -140,16 +194,16 @@ section[id] {
   height: var(--thumb);
   margin-top: calc((var(--track-h) - var(--thumb)) / 2);
   border-radius: 999px;
-  background: var(--card);
-  border: 3px solid var(--gold);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  background: #ffffff;
+  border: 3px solid var(--accent);
+  box-shadow: 0 4px 14px rgba(0, 40, 80, 0.3);
   transition: transform 0.15s ease;
 }
 .range:active::-webkit-slider-thumb {
   transform: scale(1.08);
 }
 .range:focus-visible::-webkit-slider-thumb {
-  box-shadow: 0 0 0 6px var(--gold-soft);
+  box-shadow: 0 0 0 6px var(--accent-soft);
 }
 .range::-moz-range-track {
   height: var(--track-h);
@@ -159,18 +213,18 @@ section[id] {
 .range::-moz-range-progress {
   height: var(--track-h);
   border-radius: 999px;
-  background: var(--gold);
+  background: var(--accent);
 }
 .range::-moz-range-thumb {
   width: var(--thumb);
   height: var(--thumb);
   border-radius: 999px;
-  background: var(--card);
-  border: 3px solid var(--gold);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  background: #ffffff;
+  border: 3px solid var(--accent);
+  box-shadow: 0 4px 14px rgba(0, 40, 80, 0.3);
 }
 .range:focus-visible::-moz-range-thumb {
-  box-shadow: 0 0 0 6px var(--gold-soft);
+  box-shadow: 0 0 0 6px var(--accent-soft);
 }
 
 /* ------------------------------------------------------------------ */

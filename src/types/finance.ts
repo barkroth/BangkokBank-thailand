@@ -5,11 +5,16 @@
  * UI expects, and to swap demo data for real (approved) data later.
  */
 
-export type LoanProductId = "personal" | "home" | "auto" | "sme";
+export type LoanProductId = "sme" | "personal" | "home";
 
 export type InsuranceOptionId = "none" | "loan-protection" | "loan-protection-plus";
 
 export type Theme = "dark" | "light";
+
+export type Language = "en" | "th";
+
+/** A piece of demo content written in each supported language. */
+export type Localized = Record<Language, string>;
 
 /** A min/max range with a step, used for sliders and validation. */
 export interface NumericRange {
@@ -20,19 +25,25 @@ export interface NumericRange {
 
 /** One-time processing fee, described as a percentage with optional bounds. */
 export interface FeeRule {
-  label: string;
+  label: Localized;
   percentOfPrincipal: number;
   minimum: number;
   maximum: number;
 }
 
+/**
+ * Quick-pick buttons must start at the range minimum and end at the range
+ * maximum, so the shortcuts always match what the slider can actually reach.
+ */
 export interface LoanProduct {
   id: LoanProductId;
-  name: string;
-  tagline: string;
-  description: string;
-  highlights: string[];
-  typicalUse: string;
+  name: Localized;
+  /** Short name for tabs, e.g. "Personal". */
+  shortName: Localized;
+  tagline: Localized;
+  description: Localized;
+  highlights: Localized[];
+  typicalUse: Localized;
   amount: NumericRange & { default: number; quickPicks: number[] };
   tenureMonths: NumericRange & { default: number; quickPicks: number[] };
   /** Annual interest rate in percent, e.g. 6.5 means 6.5% p.a. */
@@ -42,9 +53,9 @@ export interface LoanProduct {
 
 export interface InsuranceOption {
   id: InsuranceOptionId;
-  name: string;
-  shortDescription: string;
-  coverage: string[];
+  name: Localized;
+  shortDescription: Localized;
+  coverage: Localized[];
   /**
    * Demo premium: a yearly percentage of the original loan amount.
    * 0 means no insurance. This is NOT linked to the interest rate.
@@ -54,17 +65,17 @@ export interface InsuranceOption {
 
 export interface Campaign {
   id: string;
-  eyebrow: string;
-  title: string;
-  message: string;
-  validity: string;
-  ctaLabel: string;
+  eyebrow: Localized;
+  title: Localized;
+  message: Localized;
+  validity: Localized;
+  ctaLabel: Localized;
 }
 
 export interface ContactChannel {
   id: "line" | "whatsapp" | "phone";
-  label: string;
-  description: string;
+  label: Localized;
+  description: Localized;
   href: string;
   displayValue: string;
   /** True while the destination is still a placeholder (not configured). */

@@ -3,6 +3,7 @@
 import { RotateCcw } from "lucide-react";
 import type { LoanCalculatorController } from "@/hooks/use-loan-calculator";
 import { usePresentation } from "@/context/presentation-context";
+import { useI18n } from "@/hooks/use-i18n";
 import { LOAN_PRODUCTS } from "@/data/loan-products";
 import { formatNumber, formatTHBCompact } from "@/lib/format";
 import { cn } from "@/lib/ui";
@@ -20,6 +21,7 @@ interface LoanCalculatorProps {
 
 export function LoanCalculator({ controller }: LoanCalculatorProps) {
   const { isPresenting } = usePresentation();
+  const { t, text } = useI18n();
   const { input, product, errors, selectProduct, setAmount, setTenureMonths, setAnnualRate, setInsuranceId, reset } =
     controller;
 
@@ -29,11 +31,11 @@ export function LoanCalculator({ controller }: LoanCalculatorProps) {
         {!isPresenting && (
           <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <SectionHeading
-              eyebrow="Loan calculator"
-              title="Estimate a monthly instalment"
-              description="Adjust the amount, tenure and rate together with your customer. All results are illustrative and based on demo data."
+              eyebrow={t.calculator.eyebrow}
+              title={t.calculator.title}
+              description={t.calculator.description}
             />
-            <DemoBadge className="self-start lg:self-end">Prototype · Illustrative rates</DemoBadge>
+            <DemoBadge className="self-start lg:self-end">{t.calculator.badge}</DemoBadge>
           </div>
         )}
 
@@ -42,9 +44,9 @@ export function LoanCalculator({ controller }: LoanCalculatorProps) {
           <div className="rounded-3xl border border-line bg-card p-5 shadow-card sm:p-8">
             <fieldset>
               <legend className={cn("mb-3 font-semibold text-fg", isPresenting ? "text-lg" : "text-sm")}>
-                Loan type
+                {t.calculator.loanType}
               </legend>
-              <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+              <div className="grid grid-cols-3 gap-2">
                 {LOAN_PRODUCTS.map((p) => {
                   const active = p.id === product.id;
                   return (
@@ -55,15 +57,15 @@ export function LoanCalculator({ controller }: LoanCalculatorProps) {
                       onClick={() => selectProduct(p.id)}
                       className={cn(
                         "flex items-center gap-2 rounded-2xl border px-3 text-left font-semibold transition-all duration-200",
-                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold",
+                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
                         isPresenting ? "min-h-16 text-base" : "min-h-12 text-sm",
                         active
-                          ? "border-gold bg-gold-soft text-fg"
-                          : "border-line-strong text-muted hover:border-gold/50 hover:text-fg",
+                          ? "border-accent bg-accent-soft text-fg"
+                          : "border-line-strong text-muted hover:border-accent/50 hover:text-fg",
                       )}
                     >
-                      <ProductIcon id={p.id} className={cn("size-4 shrink-0", active ? "text-gold-ink" : "")} />
-                      <span className="leading-tight">{p.name.replace(" Loan", "")}</span>
+                      <ProductIcon id={p.id} className={cn("size-4 shrink-0", active ? "text-accent-ink" : "")} />
+                      <span className="leading-tight">{text(p.shortName)}</span>
                     </button>
                   );
                 })}
@@ -74,7 +76,7 @@ export function LoanCalculator({ controller }: LoanCalculatorProps) {
 
             <div className="space-y-8">
               <SliderField
-                label="Loan amount"
+                label={t.calculator.loanAmount}
                 value={input.amount}
                 onChange={setAmount}
                 range={product.amount}
@@ -88,20 +90,20 @@ export function LoanCalculator({ controller }: LoanCalculatorProps) {
                 large={isPresenting}
               />
               <SliderField
-                label="Loan tenure"
+                label={t.calculator.loanTenure}
                 value={input.tenureMonths}
                 onChange={setTenureMonths}
                 range={product.tenureMonths}
                 quickPicks={product.tenureMonths.quickPicks}
-                formatQuickPick={(m) => (m >= 24 && m % 12 === 0 ? `${m / 12} yrs` : `${m} mo`)}
+                formatQuickPick={(m) => (m >= 24 && m % 12 === 0 ? t.calculator.yearsShort(m / 12) : t.calculator.monthsShort(m))}
                 formatInputValue={String}
-                formatRangeLabel={(m) => `${m} mo`}
-                suffix="months"
+                formatRangeLabel={t.calculator.monthsShort}
+                suffix={t.calculator.monthsUnit}
                 error={errors.tenureMonths}
                 large={isPresenting}
               />
               <SliderField
-                label="Interest rate (demo)"
+                label={t.calculator.interestRate}
                 value={input.annualRate}
                 onChange={setAnnualRate}
                 range={product.annualRate}
@@ -109,10 +111,10 @@ export function LoanCalculator({ controller }: LoanCalculatorProps) {
                 formatQuickPick={(r) => `${r}%`}
                 formatInputValue={(r) => String(Number(r.toFixed(2)))}
                 formatRangeLabel={(r) => `${r}%`}
-                suffix="% p.a."
+                suffix={t.calculator.ratePerYear}
                 inputMode="decimal"
                 error={errors.annualRate}
-                hint={isPresenting ? undefined : "Illustrative annual rate, reducing balance. Not an official rate."}
+                hint={isPresenting ? undefined : t.calculator.rateHint}
                 large={isPresenting}
               />
             </div>
@@ -135,7 +137,7 @@ export function LoanCalculator({ controller }: LoanCalculatorProps) {
                   className="inline-flex min-h-10 items-center gap-2 rounded-full px-3 text-sm font-medium text-muted transition-colors hover:text-fg"
                 >
                   <RotateCcw className="size-4" aria-hidden />
-                  Reset to {product.name} defaults
+                  {t.calculator.resetTo(text(product.name))}
                 </button>
               </div>
             )}

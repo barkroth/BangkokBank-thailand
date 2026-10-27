@@ -23,13 +23,6 @@ export function formatPercent(value: number): string {
   return `${value.toFixed(2)}%`;
 }
 
-/** 36 -> "36 months (3 yrs)" */
-export function formatTenure(months: number): string {
-  const years = months / 12;
-  const yearsLabel = Number.isInteger(years) ? `${years} yr${years === 1 ? "" : "s"}` : `${trimZeros(years)} yrs`;
-  return `${months} months (${yearsLabel})`;
-}
-
 function trimZeros(value: number): string {
   return Number(value.toFixed(1)).toString();
 }

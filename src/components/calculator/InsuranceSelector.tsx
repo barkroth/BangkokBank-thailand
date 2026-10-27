@@ -5,6 +5,7 @@ import type { InsuranceOptionId } from "@/types/finance";
 import { INSURANCE_OPTIONS } from "@/data/insurance-options";
 import { calculateTotalInsurance } from "@/lib/loan-calculator";
 import { formatTHB } from "@/lib/format";
+import { useI18n } from "@/hooks/use-i18n";
 import { cn } from "@/lib/ui";
 
 interface InsuranceSelectorProps {
@@ -16,13 +17,14 @@ interface InsuranceSelectorProps {
 }
 
 export function InsuranceSelector({ selectedId, onSelect, principal, tenureMonths, large }: InsuranceSelectorProps) {
+  const { t, text } = useI18n();
   const canPreview = principal !== null && principal > 0 && tenureMonths !== null && tenureMonths > 0;
 
   return (
     <fieldset>
-      <legend className={cn("mb-1 font-semibold text-fg", large ? "text-lg" : "text-sm")}>Loan protection (optional)</legend>
+      <legend className={cn("mb-1 font-semibold text-fg", large ? "text-lg" : "text-sm")}>{t.insuranceSelector.legend}</legend>
       <p className="mb-4 text-sm text-subtle">
-        Insurance is a separate, optional cost. It does not change the interest rate.
+        {t.insuranceSelector.note}
       </p>
 
       <div className="grid gap-2 sm:grid-cols-3">
@@ -38,9 +40,9 @@ export function InsuranceSelector({ selectedId, onSelect, principal, tenureMonth
               key={option.id}
               className={cn(
                 "relative flex cursor-pointer flex-col rounded-2xl border p-4 transition-all duration-200",
-                "has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-gold",
+                "has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-accent",
                 large ? "min-h-28" : "min-h-24",
-                active ? "border-gold bg-gold-soft" : "border-line-strong hover:border-gold/50",
+                active ? "border-accent bg-accent-soft" : "border-line-strong hover:border-accent/50",
               )}
             >
               <input
@@ -53,18 +55,18 @@ export function InsuranceSelector({ selectedId, onSelect, principal, tenureMonth
               />
               <span className="flex items-center gap-2 font-semibold text-fg">
                 {option.id !== "none" && (
-                  <ShieldCheck className={cn("size-4 shrink-0", active ? "text-gold-ink" : "text-muted")} aria-hidden />
+                  <ShieldCheck className={cn("size-4 shrink-0", active ? "text-accent-ink" : "text-muted")} aria-hidden />
                 )}
-                <span className={large ? "text-base" : "text-sm"}>{option.name}</span>
+                <span className={large ? "text-base" : "text-sm"}>{text(option.name)}</span>
               </span>
               <span className="mt-1.5 text-xs leading-snug text-muted">
                 {option.id === "none"
-                  ? "Loan only"
-                  : `${option.annualPremiumPercent}% of loan amount per year (demo)`}
+                  ? t.insuranceSelector.loanOnly
+                  : t.insuranceSelector.percentPerYear(option.annualPremiumPercent)}
               </span>
               {monthly !== null && (
-                <span className="mt-auto pt-2 text-sm font-semibold tabular-nums text-gold-ink">
-                  +{formatTHB(monthly)}/mo
+                <span className="mt-auto pt-2 text-sm font-semibold tabular-nums text-accent-ink">
+                  +{formatTHB(monthly)}{t.insuranceSelector.perMonth}
                 </span>
               )}
             </label>

@@ -51,11 +51,11 @@ function AppShell() {
         <ProductCards selectedId={calculator.input.productId} onCalculate={calculateProduct} />
         <InsuranceSection selectedId={calculator.input.insuranceId} onAddToCalculation={addInsurance} />
         {!isPresenting && <CampaignBanner />}
-        {!isPresenting && <ProductComparison selectedId={calculator.input.productId} />}
+        {!isPresenting && <ProductComparison selectedId={calculator.input.productId} onCalculate={calculateProduct} />}
         <ContactSection />
       </main>
 
-      <Footer />
+      <Footer onCalculateProduct={calculateProduct} onAddInsurance={addInsurance} />
     </div>
   );
 }
