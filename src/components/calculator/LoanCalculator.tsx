@@ -7,9 +7,6 @@ import { useI18n } from "@/hooks/use-i18n";
 import { LOAN_PRODUCTS } from "@/data/loan-products";
 import { formatNumber, formatTHBCompact } from "@/lib/format";
 import { cn } from "@/lib/ui";
-import { Container } from "@/components/ui/Container";
-import { DemoBadge } from "@/components/ui/DemoBadge";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SliderField } from "@/components/ui/SliderField";
 import { ProductIcon } from "@/components/products/ProductIcon";
 import { InsuranceSelector } from "@/components/calculator/InsuranceSelector";
@@ -26,22 +23,9 @@ export function LoanCalculator({ controller }: LoanCalculatorProps) {
     controller;
 
   return (
-    <section id="calculator" className={cn(isPresenting ? "py-8 sm:py-10" : "py-16 sm:py-24")}>
-      <Container>
-        {!isPresenting && (
-          <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <SectionHeading
-              eyebrow={t.calculator.eyebrow}
-              title={t.calculator.title}
-              description={t.calculator.description}
-            />
-            <DemoBadge className="self-start lg:self-end">{t.calculator.badge}</DemoBadge>
-          </div>
-        )}
-
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-8">
           {/* Inputs */}
-          <div className="rounded-3xl border border-line bg-card p-5 shadow-card sm:p-8">
+          <div className="rounded-3xl border border-line bg-card p-5 shadow-card sm:p-6">
             <fieldset>
               <legend className={cn("mb-3 font-semibold text-fg", isPresenting ? "text-lg" : "text-sm")}>
                 {t.calculator.loanType}
@@ -72,9 +56,9 @@ export function LoanCalculator({ controller }: LoanCalculatorProps) {
               </div>
             </fieldset>
 
-            <div className="my-7 h-px bg-line" />
+            <div className="my-5 h-px bg-line" />
 
-            <div className="space-y-8">
+            <div className="space-y-6">
               <SliderField
                 label={t.calculator.loanAmount}
                 value={input.amount}
@@ -119,7 +103,7 @@ export function LoanCalculator({ controller }: LoanCalculatorProps) {
               />
             </div>
 
-            <div className="my-7 h-px bg-line" />
+            <div className="my-5 h-px bg-line" />
 
             <InsuranceSelector
               selectedId={input.insuranceId}
@@ -130,7 +114,7 @@ export function LoanCalculator({ controller }: LoanCalculatorProps) {
             />
 
             {!isPresenting && (
-              <div className="mt-7 flex justify-end">
+              <div className="mt-4 flex justify-end">
                 <button
                   type="button"
                   onClick={reset}
@@ -144,11 +128,9 @@ export function LoanCalculator({ controller }: LoanCalculatorProps) {
           </div>
 
           {/* Results */}
-          <div className="lg:sticky lg:top-24 lg:self-start">
+          <div className="lg:sticky lg:top-0 lg:self-start">
             <CalculatorResults controller={controller} large={isPresenting} />
           </div>
         </div>
-      </Container>
-    </section>
   );
 }

@@ -28,20 +28,26 @@ To test on a tablet or phone on the same Wi-Fi: `npm run dev -- -H 0.0.0.0`, the
 
 ```
 src/
-  app/                 layout (fonts, theme script), page, globals.css (theme colours)
+  app/                 layout (fonts, theme script, providers), one folder per route, globals.css (theme colours)
+                       /  /calculator  /loan-products  /cross-sell  /knowledge-hub  /ai-assistant  /esg-navigator
   components/
+    assistant/         AssistantWorkspace, ChatMessageView, ChatComposer, SuggestedPrompts
     calculator/        LoanCalculator, CalculatorResults, PaymentSchedule, InsuranceSelector
     products/          ProductCards, ProductIcon
-    sections/          Hero, InsuranceSection, CampaignBanner, ProductComparison, ContactSection
-    layout/            Header, PresentationBar, Footer, BrandMark, ThemeToggle
-    ui/                Button, SliderField, DemoBadge, SectionHeading, Container
-  context/             presentation-context (presentation mode on/off)
+    pages/             CalculatorPage, LoanProductsPage, CrossSellPage (route content)
+    sections/          Dashboard, PlannedModule, InsuranceSection, CampaignBanner, ProductComparison, ContactSection
+    layout/            AppShell, Header, PageHeader, PresentationBar, Footer, BrandMark, ThemeToggle
+    ui/                Button, SliderField, DemoBadge, Tabs, Container
+  context/             presentation-context (presentation mode), calculator-context (calculator state shared across routes),
+                       assistant-context (AI Assistant conversation state)
   hooks/               use-loan-calculator (state + result), use-theme
   lib/
     loan-calculator.ts ← ALL calculation maths (demo). Replace with approved formulas.
     validation.ts      input checks against product limits
     format.ts          THB / % / tenure formatting
     theme.ts           dark/light handling
+    assistant/         demo-responder.ts (scripted demo answers, demo data only) + assistant-service.ts
+                       (AssistantService interface; swap in a server-side backend later)
   data/                demo products, insurance, campaign, contacts, navigation
   types/finance.ts     shared TypeScript types
 ```

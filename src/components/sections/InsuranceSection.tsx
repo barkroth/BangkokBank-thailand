@@ -5,9 +5,7 @@ import type { InsuranceOptionId } from "@/types/finance";
 import { INSURANCE_OPTIONS } from "@/data/insurance-options";
 import { useI18n } from "@/hooks/use-i18n";
 import { cn } from "@/lib/ui";
-import { Container } from "@/components/ui/Container";
 import { DemoBadge } from "@/components/ui/DemoBadge";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 
 interface InsuranceSectionProps {
   selectedId: InsuranceOptionId;
@@ -19,12 +17,11 @@ export function InsuranceSection({ selectedId, onAddToCalculation }: InsuranceSe
   const plans = INSURANCE_OPTIONS.filter((option) => option.id !== "none");
 
   return (
-    <section id="insurance" className="py-16 sm:py-24">
-      <Container>
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-12">
           <div>
-            <SectionHeading eyebrow={t.insurance.eyebrow} title={t.insurance.title} description={t.insurance.description} />
-            <ul className="mt-8 space-y-4">
+            <h2 className="font-display text-2xl font-semibold text-fg sm:text-3xl">{t.insurance.title}</h2>
+            <p className="mt-2 text-sm leading-relaxed text-muted sm:text-base">{t.insurance.description}</p>
+            <ul className="mt-6 space-y-3">
               {t.insurance.keyPoints.map((point) => (
                 <li key={point} className="flex gap-3 text-sm leading-relaxed text-muted sm:text-base">
                   <Info className="mt-0.5 size-5 shrink-0 text-blue-ink" aria-hidden />
@@ -52,7 +49,7 @@ export function InsuranceSection({ selectedId, onAddToCalculation }: InsuranceSe
                     </span>
                     <DemoBadge tone="neutral">{t.common.demoPlan}</DemoBadge>
                   </div>
-                  <h3 className="mt-6 font-display text-2xl font-semibold text-fg">{text(plan.name)}</h3>
+                  <h3 className="mt-4 font-display text-2xl font-semibold text-fg">{text(plan.name)}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted">{text(plan.shortDescription)}</p>
 
                   <ul className="mt-5 space-y-2 text-sm text-muted">
@@ -88,7 +85,5 @@ export function InsuranceSection({ selectedId, onAddToCalculation }: InsuranceSe
             })}
           </div>
         </div>
-      </Container>
-    </section>
   );
 }

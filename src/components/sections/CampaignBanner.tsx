@@ -1,11 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowRight, CalendarClock, Sparkles } from "lucide-react";
 import { DEMO_CAMPAIGN } from "@/data/campaign";
 import { useI18n } from "@/hooks/use-i18n";
-import { scrollToSection } from "@/lib/ui";
-import { Button } from "@/components/ui/Button";
-import { Container } from "@/components/ui/Container";
 import { DemoBadge } from "@/components/ui/DemoBadge";
 
 export function CampaignBanner() {
@@ -13,9 +11,7 @@ export function CampaignBanner() {
   const { t, text } = useI18n();
 
   return (
-    <section aria-label={t.campaign.ariaLabel} className="pb-16 sm:pb-24">
-      <Container>
-        <div className="on-navy relative overflow-hidden rounded-3xl bg-brand p-6 shadow-card sm:p-10 lg:p-12">
+        <div aria-label={t.campaign.ariaLabel} role="region" className="on-navy relative overflow-hidden rounded-3xl bg-brand p-6 shadow-card sm:p-10 lg:p-12">
           {/* Decorative concentric rings */}
           <div className="pointer-events-none absolute -right-24 -top-24 hidden sm:block" aria-hidden>
             {[0, 1, 2, 3].map((ring) => (
@@ -43,13 +39,14 @@ export function CampaignBanner() {
                 {text(campaign.validity)}
               </p>
             </div>
-            <Button variant="outline-accent" size="lg" className="self-start lg:self-center" onClick={() => scrollToSection("calculator")}>
+            <Link
+              href="/calculator"
+              className="inline-flex min-h-12 items-center justify-center gap-2 self-start rounded-full border border-accent/60 px-6 text-base font-semibold text-accent-ink transition-all duration-200 hover:bg-accent-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:self-center"
+            >
               {text(campaign.ctaLabel)}
               <ArrowRight className="size-4" aria-hidden />
-            </Button>
+            </Link>
           </div>
         </div>
-      </Container>
-    </section>
   );
 }

@@ -9,8 +9,6 @@ import { calculateLoan } from "@/lib/loan-calculator";
 import { formatTHB, formatTHBCompact } from "@/lib/format";
 import { cn } from "@/lib/ui";
 import { Button } from "@/components/ui/Button";
-import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProductIcon } from "@/components/products/ProductIcon";
 
 interface ComparisonRow {
@@ -65,16 +63,9 @@ export function ProductComparison({ selectedId, onCalculate }: ProductComparison
   );
 
   return (
-    <section id="compare" className="border-t border-line bg-surface-2 py-16 sm:py-24">
-      <Container>
-        <SectionHeading
-          eyebrow={t.comparison.eyebrow}
-          title={t.comparison.title}
-          description={t.comparison.description}
-        />
-
+    <div>
         {/* Desktop / tablet landscape: table */}
-        <div className="mt-12 hidden overflow-hidden rounded-3xl border border-line bg-card shadow-card md:block">
+        <div className="hidden overflow-hidden rounded-3xl border border-line bg-card shadow-card md:block">
           <table className="w-full table-fixed text-left text-sm">
             <thead>
               <tr className="border-b border-line">
@@ -85,7 +76,7 @@ export function ProductComparison({ selectedId, onCalculate }: ProductComparison
                   <th
                     key={p.id}
                     scope="col"
-                    className={cn("px-5 py-5 align-bottom", p.id === selectedId && "bg-accent-soft")}
+                    className={cn("px-5 py-4 align-bottom", p.id === selectedId && "bg-accent-soft")}
                   >
                     <span className="flex items-center gap-2 font-display text-xl font-semibold text-fg">
                       <ProductIcon id={p.id} className="size-4 shrink-0 text-accent-ink" />
@@ -101,13 +92,13 @@ export function ProductComparison({ selectedId, onCalculate }: ProductComparison
             <tbody className="divide-y divide-line">
               {ROWS.map((row, index) => (
                 <tr key={index}>
-                  <th scope="row" className="px-5 py-4 align-top text-xs font-semibold uppercase tracking-wider text-subtle">
+                  <th scope="row" className="px-5 py-3 align-top text-xs font-semibold uppercase tracking-wider text-subtle">
                     {row.label(t.comparison)}
                   </th>
                   {LOAN_PRODUCTS.map((p) => (
                     <td
                       key={p.id}
-                      className={cn("px-5 py-4 align-top text-muted tabular-nums", p.id === selectedId && "bg-accent-soft text-fg")}
+                      className={cn("px-5 py-3 align-top text-muted tabular-nums", p.id === selectedId && "bg-accent-soft text-fg")}
                     >
                       {row.value(p, examples[p.id], t.comparison, text)}
                     </td>
@@ -119,7 +110,7 @@ export function ProductComparison({ selectedId, onCalculate }: ProductComparison
         </div>
 
         {/* Phones / tablet portrait: stacked cards */}
-        <div className="mt-10 grid gap-4 md:hidden">
+        <div className="grid gap-4 md:hidden">
           {LOAN_PRODUCTS.map((p) => (
             <article
               key={p.id}
@@ -143,7 +134,6 @@ export function ProductComparison({ selectedId, onCalculate }: ProductComparison
             </article>
           ))}
         </div>
-      </Container>
-    </section>
+    </div>
   );
 }

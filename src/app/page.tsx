@@ -1,5 +1,5 @@
-import { SalesCompanionApp } from "@/components/SalesCompanionApp";
+import { Dashboard } from "@/components/sections/Dashboard";
 
 export default function HomePage() {
-  return <SalesCompanionApp />;
+  return <Dashboard />;
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useI18n } from "@/hooks/use-i18n";
 import { DemoBadge } from "@/components/ui/DemoBadge";
 
@@ -11,7 +12,7 @@ export function BrandMark({ showBadge = true }: { showBadge?: boolean }) {
   const { t } = useI18n();
 
   return (
-    <a href="#top" className="group flex min-w-0 items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+    <Link href="/" className="group flex min-w-0 shrink-0 items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
       <span className="hidden h-8 w-px shrink-0 bg-accent sm:block" aria-hidden />
       <span className="min-w-0 leading-none">
         <span className="block whitespace-nowrap font-display text-lg font-semibold tracking-tight text-fg sm:text-[1.4rem]">
@@ -22,10 +23,10 @@ export function BrandMark({ showBadge = true }: { showBadge?: boolean }) {
         </span>
       </span>
       {showBadge && (
-        <span className="hidden sm:block">
+        <span className="hidden sm:block xl:hidden 2xl:block">
           <DemoBadge>{t.common.prototype}</DemoBadge>
         </span>
       )}
-    </a>
+    </Link>
   );
 }

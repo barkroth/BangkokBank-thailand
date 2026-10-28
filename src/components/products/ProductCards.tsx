@@ -6,9 +6,7 @@ import { LOAN_PRODUCTS } from "@/data/loan-products";
 import { useI18n } from "@/hooks/use-i18n";
 import { formatTHBCompact } from "@/lib/format";
 import { cn } from "@/lib/ui";
-import { Container } from "@/components/ui/Container";
 import { DemoBadge } from "@/components/ui/DemoBadge";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProductIcon } from "@/components/products/ProductIcon";
 
 interface ProductCardsProps {
@@ -20,18 +18,14 @@ export function ProductCards({ selectedId, onCalculate }: ProductCardsProps) {
   const { t, text } = useI18n();
 
   return (
-    <section id="products" className="border-t border-line bg-surface-2 py-16 sm:py-24">
-      <Container>
-        <SectionHeading eyebrow={t.products.eyebrow} title={t.products.title} description={t.products.description} />
-
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
+    <div className="grid gap-5 md:grid-cols-3">
           {LOAN_PRODUCTS.map((product) => {
             const selected = product.id === selectedId;
             return (
               <article
                 key={product.id}
                 className={cn(
-                  "group flex flex-col rounded-3xl border bg-card p-6 shadow-card transition-all duration-300 hover:-translate-y-1",
+                  "group flex flex-col rounded-3xl border bg-card p-5 shadow-card transition-all duration-300 hover:-translate-y-1",
                   selected ? "border-accent/70" : "border-line hover:border-line-strong",
                 )}
               >
@@ -42,7 +36,7 @@ export function ProductCards({ selectedId, onCalculate }: ProductCardsProps) {
                   {selected && <DemoBadge tone="blue">{t.products.inCalculator}</DemoBadge>}
                 </div>
 
-                <h3 className="mt-6 font-display text-2xl font-semibold text-fg">{text(product.name)}</h3>
+                <h3 className="mt-4 font-display text-2xl font-semibold text-fg">{text(product.name)}</h3>
                 <p className="mt-1 text-sm text-accent-ink">{text(product.tagline)}</p>
                 <p className="mt-3 text-sm leading-relaxed text-muted">{text(product.description)}</p>
 
@@ -74,7 +68,7 @@ export function ProductCards({ selectedId, onCalculate }: ProductCardsProps) {
                   ))}
                 </ul>
 
-                <div className="mt-auto pt-6">
+                <div className="mt-auto pt-5">
                   <button
                     type="button"
                     onClick={() => onCalculate(product.id)}
@@ -93,8 +87,6 @@ export function ProductCards({ selectedId, onCalculate }: ProductCardsProps) {
               </article>
             );
           })}
-        </div>
-      </Container>
-    </section>
+    </div>
   );
 }

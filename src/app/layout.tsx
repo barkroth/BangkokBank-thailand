@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Manrope, Noto_Sans_Thai, Noto_Serif_Thai } from "next/font/google";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
 import { LANGUAGE_INIT_SCRIPT } from "@/lib/language";
+import { AppProviders } from "@/components/AppProviders";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -60,7 +61,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <script dangerouslySetInnerHTML={{ __html: LANGUAGE_INIT_SCRIPT }} />
       </head>
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased">
+        <AppProviders>{children}</AppProviders>
+      </body>
     </html>
   );
 }
