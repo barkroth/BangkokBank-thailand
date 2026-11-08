@@ -7,7 +7,7 @@ import { Menu, Presentation, X } from "lucide-react";
 import { NAV_LINKS } from "@/data/navigation";
 import { usePresentation } from "@/context/presentation-context";
 import { useI18n } from "@/hooks/use-i18n";
-import { cn } from "@/lib/ui";
+import { cn, externalLinkProps } from "@/lib/ui";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { BrandMark } from "@/components/layout/BrandMark";
@@ -34,6 +34,7 @@ export function Header() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
+                    {...externalLinkProps(link.href)}
                     aria-current={active ? "page" : undefined}
                     className={cn(
                       "rounded-full px-3 py-2 text-sm font-medium whitespace-nowrap transition-colors",
@@ -84,6 +85,7 @@ export function Header() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
+                    {...externalLinkProps(link.href)}
                     onClick={() => setMenuOpen(false)}
                     aria-current={active ? "page" : undefined}
                     className={cn(

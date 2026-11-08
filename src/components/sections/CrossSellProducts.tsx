@@ -24,7 +24,12 @@ const ICONS: Record<CrossSellProductKey, LucideIcon> = {
   operatingAccounts: Landmark,
 };
 
-export function CrossSellProducts() {
+interface CrossSellProductsProps {
+  insuranceOpen: boolean;
+  onToggleInsurance: () => void;
+}
+
+export function CrossSellProducts({ insuranceOpen, onToggleInsurance }: CrossSellProductsProps) {
   const { t } = useI18n();
 
   return (
@@ -46,18 +51,21 @@ export function CrossSellProducts() {
             const Icon = ICONS[product.key];
             const item = t.crossSellHub.items[product.key];
             const inPage = product.href.startsWith("#");
+            const Tag = inPage ? "button" : "a";
             const filled = index % 2 === 0;
             const ActionIcon = inPage ? ArrowDown : ArrowUpRight;
             return (
               <li key={product.key}>
-                <a
-                  href={product.href}
-                  {...(inPage ? {} : { target: "_blank", rel: "noopener noreferrer" })}
+                <Tag
+                  {...(inPage
+                    ? { type: "button" as const, onClick: onToggleInsurance, "aria-expanded": insuranceOpen, "aria-controls": "insurance" }
+                    : { href: product.href, target: "_blank", rel: "noopener noreferrer" })}
                   aria-label={`${item.title} — ${inPage ? t.crossSellHub.inPage : t.crossSellHub.external}`}
                   className={cn(
-                    "group flex h-full min-h-32 flex-col justify-between gap-4 rounded-2xl p-5 shadow-lg shadow-black/10 transition-all duration-300",
+                    "group flex h-full w-full min-h-32 flex-col text-left justify-between gap-4 rounded-2xl p-5 shadow-lg shadow-black/10 transition-all duration-300",
                     "hover:-translate-y-1 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b3d91]",
                     filled ? "bg-[#1aa3ff] text-white hover:bg-[#0f95f0]" : "bg-white text-[#0a2a6b] hover:bg-sky-50",
+                    inPage && insuranceOpen && "ring-2 ring-white ring-offset-2 ring-offset-[#0b3d91]",
                   )}
                 >
                   <span className="flex items-start justify-between gap-3">
@@ -72,7 +80,7 @@ export function CrossSellProducts() {
                     <ActionIcon
                       className={cn(
                         "size-5 transition-transform duration-300",
-                        inPage ? "group-hover:translate-y-0.5" : "group-hover:-translate-y-0.5 group-hover:translate-x-0.5",
+                        inPage ? (insuranceOpen ? "rotate-180" : "group-hover:translate-y-0.5") : "group-hover:-translate-y-0.5 group-hover:translate-x-0.5",
                         filled ? "text-white/80" : "text-[#0b5fd1]/70",
                       )}
                       aria-hidden
@@ -84,7 +92,7 @@ export function CrossSellProducts() {
                       {item.body}
                     </span>
                   </span>
-                </a>
+                </Tag>
               </li>
             );
           })}

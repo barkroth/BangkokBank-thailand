@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { MODULES, type ModuleKey } from "@/data/navigation";
 import { useI18n } from "@/hooks/use-i18n";
-import { cn } from "@/lib/ui";
+import { cn, externalLinkProps } from "@/lib/ui";
 import { Container } from "@/components/ui/Container";
 import { DemoBadge } from "@/components/ui/DemoBadge";
 
@@ -47,7 +47,7 @@ export function Dashboard() {
           <div aria-hidden className="absolute inset-0 -z-10 bg-linear-to-r from-[#0b2f7a]/95 via-[#0b2f7a]/70 to-transparent sm:via-[#0b2f7a]/40" />
 
           <div className="flex min-h-56 flex-col justify-center gap-3 px-6 py-7 sm:min-h-64 sm:px-10 lg:min-h-72 xl:px-12">
-            <DemoBadge>{t.hero.badge}</DemoBadge>
+            <DemoBadge className="self-start border-white/30! bg-white/10! text-white!">{t.hero.badge}</DemoBadge>
             <h1 className="flex items-center gap-2 font-display text-4xl font-bold leading-none tracking-tight text-white sm:text-5xl xl:text-6xl">
               <ChevronRight className="size-9 shrink-0 text-sky-400 sm:size-11 xl:size-14" strokeWidth={3} aria-hidden />
               {t.hero.title}
@@ -56,9 +56,11 @@ export function Dashboard() {
             <p className="max-w-md text-sm leading-relaxed text-blue-100/90 sm:text-base">{t.hero.support}</p>
           </div>
 
-          <p className="absolute right-3 top-4 hidden max-w-44 rounded-2xl border border-white/40 bg-white/15 px-4 py-3 text-right text-sm font-semibold leading-snug text-white shadow-lg backdrop-blur-md lg:block xl:right-4 xl:max-w-52 xl:text-base">
-            {t.hero.callout}
-          </p>
+          <div className="pointer-events-none absolute right-0 top-1/2 hidden aspect-[2048/686] w-full -translate-y-1/2 lg:block">
+            <p className="absolute left-[82.4%] top-[28.4%] flex h-[30.1%] w-[15.9%] items-center justify-end p-[1.1%] text-right text-xs font-semibold leading-snug text-white drop-shadow-[0_1px_6px_rgba(11,47,122,0.55)] xl:text-sm 2xl:text-base">
+              {t.hero.callout}
+            </p>
+          </div>
         </section>
 
         <nav aria-label={t.modules.dashboard} className="animate-fade-up" style={{ animationDelay: "120ms" }}>
@@ -69,6 +71,7 @@ export function Dashboard() {
                 <li key={module.href}>
                   <Link
                     href={module.href}
+                    {...externalLinkProps(module.href)}
                     className={cn(
                       "group flex h-full items-start gap-4 rounded-3xl border bg-card p-4 shadow-card xl:p-5 transition-all duration-300",
                       "hover:-translate-y-0.5 hover:border-accent/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",

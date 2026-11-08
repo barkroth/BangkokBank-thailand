@@ -6,7 +6,7 @@ import { ArrowRight, Check, CircleAlert, Copy, Info, ShieldAlert, Sparkles, type
 import type { AssistantBlock, AssistantLink, AssistantText, ChatMessage, NoticeTone } from "@/types/assistant";
 import { useCalculator } from "@/context/calculator-context";
 import { useI18n } from "@/hooks/use-i18n";
-import { cn } from "@/lib/ui";
+import { cn, externalLinkProps } from "@/lib/ui";
 import { DemoBadge } from "@/components/ui/DemoBadge";
 
 /** Resolves plain or localized reply text in the current language. */
@@ -169,6 +169,7 @@ function ReplyLink({ link }: { link: AssistantLink }) {
   return (
     <Link
       href={link.href}
+      {...externalLinkProps(link.href)}
       onClick={onClick}
       className="inline-flex min-h-10 items-center gap-1.5 rounded-full border border-accent/60 px-4 text-sm font-semibold text-accent-ink transition-colors hover:bg-accent-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
     >
