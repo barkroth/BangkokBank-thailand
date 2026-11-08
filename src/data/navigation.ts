@@ -26,9 +26,9 @@ export const MODULES: ModuleLink[] = [
   { href: "/calculator", key: "calculator", planned: false },
   { href: "/loan-products", key: "loanProducts", planned: false },
   { href: "/cross-sell", key: "crossSell", planned: false },
-  { href: "/knowledge-hub", key: "knowledgeHub", planned: true },
   { href: "/ai-assistant", key: "aiAssistant", planned: false },
   { href: "/esg-navigator", key: "esgNavigator", planned: false },
+  { href: "/knowledge-hub", key: "knowledgeHub", planned: true },
 ];
 
 export const NAV_LINKS: NavLink[] = [{ href: "/", key: "home" }, ...MODULES];
