@@ -366,8 +366,8 @@ const th: Messages = {
     pillars: [
       {
         letter: "E",
-        title: "Environmental",
-        subtitle: "Planet",
+        title: "สิ่งแวดล้อม",
+        subtitle: "โลก",
         body: "วิธีที่บริษัทส่งผลกระทบต่อโลกและบริหารจัดการทรัพยากรธรรมชาติ",
         examples: [
           "Apple ออกแบบผลิตภัณฑ์ด้วยอะลูมิเนียมรีไซเคิล 100% เพื่อลดขยะ",
@@ -377,8 +377,8 @@ const th: Messages = {
       },
       {
         letter: "S",
-        title: "Social",
-        subtitle: "People",
+        title: "สังคม",
+        subtitle: "ผู้คน",
         body: "วิธีที่บริษัทดูแลผู้คน ทั้งพนักงาน ลูกค้า และชุมชน",
         examples: [
           "Nike ดูแลให้แรงงานในโรงงานทั่วโลกได้รับค่าจ้างที่เป็นธรรมและสภาพการทำงานที่ปลอดภัย",
@@ -388,8 +388,8 @@ const th: Messages = {
       },
       {
         letter: "G",
-        title: "Governance",
-        subtitle: "Principles",
+        title: "ธรรมาภิบาล",
+        subtitle: "หลักการ",
         body: "วิธีที่บริษัทได้รับการบริหารจัดการภายในเพื่อความซื่อสัตย์และเป็นธรรม",
         examples: [
           "Microsoft มีคณะกรรมการที่หลากหลายทั้งเพศและภูมิหลัง เพื่อหลีกเลี่ยงการตัดสินใจที่มีอคติ",
