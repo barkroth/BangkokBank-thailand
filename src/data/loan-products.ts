@@ -38,8 +38,6 @@ export const LOAN_PRODUCTS: LoanProduct[] = [
     fee: {
       label: { en: "Front-end fee (demo)", th: "ค่าธรรมเนียมแรกเข้า (ตัวอย่าง)" },
       percentOfPrincipal: 0.75,
-      minimum: 2_000,
-      maximum: 30_000,
     },
   },
   {
@@ -69,8 +67,6 @@ export const LOAN_PRODUCTS: LoanProduct[] = [
     fee: {
       label: { en: "Processing fee (demo)", th: "ค่าธรรมเนียมดำเนินการ (ตัวอย่าง)" },
       percentOfPrincipal: 1,
-      minimum: 500,
-      maximum: 5_000,
     },
   },
   {
@@ -100,11 +96,12 @@ export const LOAN_PRODUCTS: LoanProduct[] = [
     fee: {
       label: { en: "Appraisal & processing fee (demo)", th: "ค่าประเมินและค่าดำเนินการ (ตัวอย่าง)" },
       percentOfPrincipal: 0.25,
-      minimum: 3_000,
-      maximum: 20_000,
     },
   },
 ];
+
+/** Adjustable one-time fee range, in percent of the loan amount. */
+export const FEE_PERCENT_RANGE = { min: 0, max: 3, step: 0.05, quickPicks: [0, 0.5, 1, 1.5, 2, 3] };
 
 export const DEFAULT_PRODUCT_ID: LoanProductId = LOAN_PRODUCTS[0].id;
 

@@ -169,6 +169,9 @@ const en = {
     monthsUnit: "months",
     ratePerYear: "% p.a.",
     rateHint: "Illustrative annual rate, reducing balance. Not an official rate.",
+    feeLabel: "Fee (demo)",
+    feeSuffix: "% of loan",
+    feeHint: "One-time fee, from 0% to 3% of the loan amount.",
     resetTo: (name: string) => `Reset to ${name} defaults`,
     sliderLabel: (label: string) => `${label} slider`,
     quickSelect: (label: string) => `${label} quick select`,
@@ -265,7 +268,7 @@ const en = {
     exampleMonthly: "Example monthly",
     rateRangeValue: (min: number, max: number) => `${min}% – ${max}% p.a.`,
     tenureValue: (min: number, max: number) => `${min} – ${max} months`,
-    feeValue: (percent: number, min: string, max: string) => `${percent}% (min ${min}, max ${max})`,
+    feeValue: (percent: number, min: number, max: number) => `${percent}% (adjustable ${min}–${max}%)`,
     exampleValue: (monthly: string, amount: string, months: number) => `${monthly} on ${amount} / ${months} mo`,
   },
   footer: {
@@ -283,6 +286,8 @@ const en = {
     tenureRange: (min: number, max: number) => `Choose between ${min} and ${max} months.`,
     rateRequired: "Enter an interest rate.",
     rateRange: (min: string, max: string) => `Use a demo rate between ${min} and ${max}.`,
+    feeRequired: "Enter a fee percentage.",
+    feeRange: (min: string, max: string) => `Fee must be between ${min} and ${max}.`,
   },
 };
 
@@ -445,6 +450,9 @@ const th: Messages = {
     monthsUnit: "เดือน",
     ratePerYear: "% ต่อปี",
     rateHint: "อัตราดอกเบี้ยต่อปีตัวอย่าง คิดจากเงินต้นคงเหลือ ไม่ใช่อัตราอย่างเป็นทางการ",
+    feeLabel: "ค่าธรรมเนียม (ตัวอย่าง)",
+    feeSuffix: "% ของวงเงิน",
+    feeHint: "ค่าธรรมเนียมครั้งเดียว ตั้งแต่ 0% ถึง 3% ของวงเงินกู้",
     resetTo: (name: string) => `รีเซ็ตเป็นค่าเริ่มต้นของ${name}`,
     sliderLabel: (label: string) => `แถบเลื่อน${label}`,
     quickSelect: (label: string) => `เลือกด่วน${label}`,
@@ -540,7 +548,7 @@ const th: Messages = {
     exampleMonthly: "ตัวอย่างค่างวดต่อเดือน",
     rateRangeValue: (min: number, max: number) => `${min}% – ${max}% ต่อปี`,
     tenureValue: (min: number, max: number) => `${min} – ${max} เดือน`,
-    feeValue: (percent: number, min: string, max: string) => `${percent}% (ขั้นต่ำ ${min}, สูงสุด ${max})`,
+    feeValue: (percent: number, min: number, max: number) => `${percent}% (ปรับได้ ${min}–${max}%)`,
     exampleValue: (monthly: string, amount: string, months: number) => `${monthly} จาก ${amount} / ${months} เดือน`,
   },
   footer: {
@@ -558,6 +566,8 @@ const th: Messages = {
     tenureRange: (min: number, max: number) => `กรุณาเลือกระหว่าง ${min} ถึง ${max} เดือน`,
     rateRequired: "กรุณากรอกอัตราดอกเบี้ย",
     rateRange: (min: string, max: string) => `ใช้อัตราตัวอย่างระหว่าง ${min} ถึง ${max}`,
+    feeRequired: "กรุณากรอกอัตราค่าธรรมเนียม",
+    feeRange: (min: string, max: string) => `ค่าธรรมเนียมต้องอยู่ระหว่าง ${min} ถึง ${max}`,
   },
 };
 

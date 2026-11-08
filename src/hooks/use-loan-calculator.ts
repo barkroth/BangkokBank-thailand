@@ -15,6 +15,7 @@ function defaultsFor(productId: LoanProductId, insuranceId: InsuranceOptionId = 
     amount: product.amount.default,
     tenureMonths: product.tenureMonths.default,
     annualRate: product.annualRate.default,
+    feePercent: product.fee.percentOfPrincipal,
     insuranceId,
   };
 }
@@ -32,7 +33,7 @@ export function useLoanCalculator() {
   const errors = useMemo(() => validateCalculatorInput(input, product, t.validation), [input, product, t]);
 
   const result: LoanCalculationResult | null = useMemo(() => {
-    if (hasErrors(errors) || input.amount === null || input.tenureMonths === null || input.annualRate === null) {
+    if (hasErrors(errors) || input.amount === null || input.tenureMonths === null || input.annualRate === null || input.feePercent === null) {
       return null;
     }
     return calculateLoan({
@@ -40,9 +41,9 @@ export function useLoanCalculator() {
       tenureMonths: input.tenureMonths,
       annualRatePercent: input.annualRate,
       insuranceAnnualPremiumPercent: insurance.annualPremiumPercent,
-      fee: product.fee,
+      feePercent: input.feePercent,
     });
-  }, [errors, input, insurance, product]);
+  }, [errors, input, insurance]);
 
   const selectProduct = useCallback((productId: LoanProductId) => {
     // Switching product loads that product's demo defaults but keeps the insurance choice.
@@ -52,6 +53,7 @@ export function useLoanCalculator() {
   const setAmount = useCallback((amount: number | null) => setInput((c) => ({ ...c, amount })), []);
   const setTenureMonths = useCallback((tenureMonths: number | null) => setInput((c) => ({ ...c, tenureMonths })), []);
   const setAnnualRate = useCallback((annualRate: number | null) => setInput((c) => ({ ...c, annualRate })), []);
+  const setFeePercent = useCallback((feePercent: number | null) => setInput((c) => ({ ...c, feePercent })), []);
   const setInsuranceId = useCallback((insuranceId: InsuranceOptionId) => setInput((c) => ({ ...c, insuranceId })), []);
   const reset = useCallback(() => setInput((c) => defaultsFor(c.productId)), []);
 
@@ -65,6 +67,7 @@ export function useLoanCalculator() {
     setAmount,
     setTenureMonths,
     setAnnualRate,
+    setFeePercent,
     setInsuranceId,
     reset,
   };

@@ -55,7 +55,7 @@ export function CalculatorResults({ controller, large = false }: CalculatorResul
       value: result.totalInsurance,
       note: result.totalInsurance > 0 ? text(insurance.name) : t.results.notSelected,
     },
-    { label: t.results.fees, value: result.fees, note: t.results.feeNote(text(product.fee.label)) },
+    { label: t.results.fees, value: result.fees, note: t.results.feeNote(`${text(product.fee.label)} · ${formatPercent(input.feePercent ?? 0)}`) },
   ];
 
   return (

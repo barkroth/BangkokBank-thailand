@@ -51,11 +51,13 @@ export function Header() {
 
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <LanguageToggle />
-          <ThemeToggle />
-          <Button size="md" onClick={enterPresentation} aria-label={t.header.enterPresentation}>
-            <Presentation className="size-4" aria-hidden />
-            <span className="hidden sm:inline">{t.header.present}</span>
-          </Button>
+          <span className="hidden sm:contents">
+            <ThemeToggle />
+            <Button size="md" onClick={enterPresentation} aria-label={t.header.enterPresentation}>
+              <Presentation className="size-4" aria-hidden />
+              <span>{t.header.present}</span>
+            </Button>
+          </span>
           <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
@@ -99,6 +101,20 @@ export function Header() {
               );
             })}
           </ul>
+          <div className="mt-3 flex items-center gap-2 border-t border-line pt-3 sm:hidden">
+            <ThemeToggle />
+            <Button
+              size="md"
+              className="flex-1"
+              onClick={() => {
+                setMenuOpen(false);
+                enterPresentation();
+              }}
+            >
+              <Presentation className="size-4" aria-hidden />
+              {t.header.present}
+            </Button>
+          </div>
         </Container>
       </nav>
     </header>

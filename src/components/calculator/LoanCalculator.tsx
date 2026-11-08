@@ -4,7 +4,7 @@ import { RotateCcw } from "lucide-react";
 import type { LoanCalculatorController } from "@/hooks/use-loan-calculator";
 import { usePresentation } from "@/context/presentation-context";
 import { useI18n } from "@/hooks/use-i18n";
-import { LOAN_PRODUCTS } from "@/data/loan-products";
+import { FEE_PERCENT_RANGE, LOAN_PRODUCTS } from "@/data/loan-products";
 import { formatNumber, formatTHBCompact } from "@/lib/format";
 import { cn } from "@/lib/ui";
 import { SliderField } from "@/components/ui/SliderField";
@@ -19,7 +19,7 @@ interface LoanCalculatorProps {
 export function LoanCalculator({ controller }: LoanCalculatorProps) {
   const { isPresenting } = usePresentation();
   const { t, text } = useI18n();
-  const { input, product, errors, selectProduct, setAmount, setTenureMonths, setAnnualRate, setInsuranceId, reset } =
+  const { input, product, errors, selectProduct, setAmount, setTenureMonths, setAnnualRate, setFeePercent, setInsuranceId, reset } =
     controller;
 
   return (
@@ -99,6 +99,21 @@ export function LoanCalculator({ controller }: LoanCalculatorProps) {
                 inputMode="decimal"
                 error={errors.annualRate}
                 hint={isPresenting ? undefined : t.calculator.rateHint}
+                large={isPresenting}
+              />
+              <SliderField
+                label={t.calculator.feeLabel}
+                value={input.feePercent}
+                onChange={setFeePercent}
+                range={FEE_PERCENT_RANGE}
+                quickPicks={FEE_PERCENT_RANGE.quickPicks}
+                formatQuickPick={(r) => `${r}%`}
+                formatInputValue={(r) => String(Number(r.toFixed(2)))}
+                formatRangeLabel={(r) => `${r}%`}
+                suffix={t.calculator.feeSuffix}
+                inputMode="decimal"
+                error={errors.feePercent}
+                hint={isPresenting ? undefined : t.calculator.feeHint}
                 large={isPresenting}
               />
             </div>

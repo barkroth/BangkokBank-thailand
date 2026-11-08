@@ -11,11 +11,11 @@
  *  - Insurance: optional, priced as a yearly % of the original loan amount,
  *    spread evenly across the months. It is a separate cost and does NOT
  *    change the interest rate.
- *  - Fees: a one-time processing fee (% of principal, with min/max),
+ *  - Fees: a one-time processing fee (% of principal, adjustable 0–3%),
  *    shown as paid upfront and not financed.
  */
 
-import type { FeeRule, LoanCalculationInput, LoanCalculationResult, ScheduleRow } from "@/types/finance";
+import type { LoanCalculationInput, LoanCalculationResult, ScheduleRow } from "@/types/finance";
 
 /** Round to 2 decimal places (satang) to avoid floating-point noise. */
 export function roundCurrency(value: number): number {
@@ -33,9 +33,8 @@ export function calculateMonthlyLoanPayment(principal: number, annualRatePercent
   return (principal * monthlyRate * growth) / (growth - 1);
 }
 
-export function calculateFee(principal: number, fee: FeeRule): number {
-  const raw = (principal * fee.percentOfPrincipal) / 100;
-  return roundCurrency(Math.min(fee.maximum, Math.max(fee.minimum, raw)));
+export function calculateFee(principal: number, feePercent: number): number {
+  return roundCurrency((principal * feePercent) / 100);
 }
 
 export function calculateTotalInsurance(principal: number, annualPremiumPercent: number, tenureMonths: number): number {
@@ -81,12 +80,12 @@ export function buildPaymentSchedule(
 }
 
 export function calculateLoan(input: LoanCalculationInput): LoanCalculationResult {
-  const { principal, tenureMonths, annualRatePercent, insuranceAnnualPremiumPercent, fee } = input;
+  const { principal, tenureMonths, annualRatePercent, insuranceAnnualPremiumPercent, feePercent } = input;
 
   const totalInsurance = calculateTotalInsurance(principal, insuranceAnnualPremiumPercent, tenureMonths);
   const schedule = buildPaymentSchedule(principal, annualRatePercent, tenureMonths, totalInsurance);
   const totalInterest = roundCurrency(schedule.reduce((sum, row) => sum + row.interest, 0));
-  const fees = calculateFee(principal, fee);
+  const fees = calculateFee(principal, feePercent);
 
   const monthlyLoanPayment = roundCurrency(calculateMonthlyLoanPayment(principal, annualRatePercent, tenureMonths));
   const monthlyInsurance = roundCurrency(totalInsurance / tenureMonths);

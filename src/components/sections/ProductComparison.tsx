@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import type { LoanProduct, LoanProductId } from "@/types/finance";
 import type { Messages } from "@/i18n/messages";
-import { LOAN_PRODUCTS } from "@/data/loan-products";
+import { FEE_PERCENT_RANGE, LOAN_PRODUCTS } from "@/data/loan-products";
 import { useI18n } from "@/hooks/use-i18n";
 import { calculateLoan } from "@/lib/loan-calculator";
 import { formatTHB, formatTHBCompact } from "@/lib/format";
@@ -26,8 +26,7 @@ const ROWS: ComparisonRow[] = [
   { label: (t) => t.tenure, value: (p, _m, t) => t.tenureValue(p.tenureMonths.min, p.tenureMonths.max) },
   {
     label: (t) => t.fee,
-    value: (p, _m, t) =>
-      t.feeValue(p.fee.percentOfPrincipal, formatTHBCompact(p.fee.minimum), formatTHBCompact(p.fee.maximum)),
+    value: (p, _m, t) => t.feeValue(p.fee.percentOfPrincipal, FEE_PERCENT_RANGE.min, FEE_PERCENT_RANGE.max),
   },
   {
     label: (t) => t.exampleMonthly,
@@ -55,7 +54,7 @@ export function ProductComparison({ selectedId, onCalculate }: ProductComparison
             tenureMonths: p.tenureMonths.default,
             annualRatePercent: p.annualRate.default,
             insuranceAnnualPremiumPercent: 0,
-            fee: p.fee,
+            feePercent: p.fee.percentOfPrincipal,
           }).monthlyInstallment,
         ]),
       ) as Record<LoanProductId, number>,

@@ -1,6 +1,7 @@
 import type { CalculatorInput, LoanProduct, ValidationErrors } from "@/types/finance";
 import type { Messages } from "@/i18n/messages";
 import { formatNumber, formatPercent } from "@/lib/format";
+import { FEE_PERCENT_RANGE } from "@/data/loan-products";
 
 /** Checks the calculator input against the selected product's demo limits. */
 export function validateCalculatorInput(
@@ -28,6 +29,12 @@ export function validateCalculatorInput(
     errors.annualRate = messages.rateRequired;
   } else if (input.annualRate < product.annualRate.min || input.annualRate > product.annualRate.max) {
     errors.annualRate = messages.rateRange(formatPercent(product.annualRate.min), formatPercent(product.annualRate.max));
+  }
+
+  if (input.feePercent === null) {
+    errors.feePercent = messages.feeRequired;
+  } else if (input.feePercent < FEE_PERCENT_RANGE.min || input.feePercent > FEE_PERCENT_RANGE.max) {
+    errors.feePercent = messages.feeRange(`${FEE_PERCENT_RANGE.min}%`, `${FEE_PERCENT_RANGE.max}%`);
   }
 
   return errors;

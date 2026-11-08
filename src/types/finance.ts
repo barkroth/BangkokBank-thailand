@@ -23,12 +23,11 @@ export interface NumericRange {
   step: number;
 }
 
-/** One-time processing fee, described as a percentage with optional bounds. */
+/** One-time processing fee as a percentage of the loan; the product sets the default. */
 export interface FeeRule {
   label: Localized;
+  /** Default fee in percent of principal, e.g. 0.75 means 0.75%. */
   percentOfPrincipal: number;
-  minimum: number;
-  maximum: number;
 }
 
 /**
@@ -82,6 +81,8 @@ export interface CalculatorInput {
   amount: number | null;
   tenureMonths: number | null;
   annualRate: number | null;
+  /** One-time fee in percent of the loan amount (0–3%). */
+  feePercent: number | null;
   insuranceId: InsuranceOptionId;
 }
 
@@ -91,7 +92,8 @@ export interface LoanCalculationInput {
   tenureMonths: number;
   annualRatePercent: number;
   insuranceAnnualPremiumPercent: number;
-  fee: FeeRule;
+  /** One-time fee in percent of principal. */
+  feePercent: number;
 }
 
 export interface ScheduleRow {
@@ -116,6 +118,6 @@ export interface LoanCalculationResult {
   schedule: ScheduleRow[];
 }
 
-export type CalculatorField = "amount" | "tenureMonths" | "annualRate";
+export type CalculatorField = "amount" | "tenureMonths" | "annualRate" | "feePercent";
 
 export type ValidationErrors = Partial<Record<CalculatorField, string>>;

@@ -1,7 +1,7 @@
 import type { AssistantBlock, AssistantIntent, AssistantLink, AssistantReply } from "@/types/assistant";
 import type { InsuranceOptionId, Language, LoanProductId, Localized } from "@/types/finance";
 import { MESSAGES, type Messages } from "@/i18n/messages";
-import { LOAN_PRODUCTS, getLoanProduct } from "@/data/loan-products";
+import { FEE_PERCENT_RANGE, LOAN_PRODUCTS, getLoanProduct } from "@/data/loan-products";
 import { INSURANCE_OPTIONS, getInsuranceOption } from "@/data/insurance-options";
 import { MODULES, NAV_LINKS, type NavKey } from "@/data/navigation";
 import { calculateLoan } from "@/lib/loan-calculator";
@@ -284,7 +284,7 @@ function compareLoans(askedAboutRates: boolean): AssistantReply {
       tenureMonths: p.tenureMonths.default,
       annualRatePercent: p.annualRate.default,
       insuranceAnnualPremiumPercent: 0,
-      fee: p.fee,
+      feePercent: p.fee.percentOfPrincipal,
     }).monthlyInstallment;
 
     return [
@@ -292,9 +292,7 @@ function compareLoans(askedAboutRates: boolean): AssistantReply {
       msg((x) => x.comparison.rateRangeValue(p.annualRate.min, p.annualRate.max)),
       `${formatTHBCompact(p.amount.min)} – ${formatTHBCompact(p.amount.max)}`,
       msg((x) => x.comparison.tenureValue(p.tenureMonths.min, p.tenureMonths.max)),
-      msg((x) =>
-        x.comparison.feeValue(p.fee.percentOfPrincipal, formatTHBCompact(p.fee.minimum), formatTHBCompact(p.fee.maximum)),
-      ),
+      msg((x) => x.comparison.feeValue(p.fee.percentOfPrincipal, FEE_PERCENT_RANGE.min, FEE_PERCENT_RANGE.max)),
       msg((x) =>
         x.comparison.exampleValue(formatTHB(exampleMonthly, { whole: true }), formatTHBCompact(p.amount.default), p.tenureMonths.default),
       ),
