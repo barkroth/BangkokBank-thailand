@@ -28,7 +28,7 @@ export const MODULES: ModuleLink[] = [
   { href: "/cross-sell", key: "crossSell", planned: false },
   { href: "/knowledge-hub", key: "knowledgeHub", planned: true },
   { href: "/ai-assistant", key: "aiAssistant", planned: false },
-  { href: "https://www.set.or.th/set-esg-academy/standard.html", key: "esgNavigator", planned: false },
+  { href: "/esg-navigator", key: "esgNavigator", planned: false },
 ];
 
 export const NAV_LINKS: NavLink[] = [{ href: "/", key: "home" }, ...MODULES];

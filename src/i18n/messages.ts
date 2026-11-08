@@ -64,7 +64,7 @@ const en = {
       crossSell: "Cards, payments, accounts and protection to offer alongside a loan.",
       calculator: "Estimate a monthly instalment with optional protection.",
       aiAssistant: "Demo assistant for meeting preparation, product discovery and navigation.",
-      esgNavigator: "Sustainability-focused guidance for customer conversations.",
+      esgNavigator: "ESG basics — Planet, People and Principles — for customer conversations.",
     },
   },
   crossSellHub: {
@@ -80,6 +80,49 @@ const en = {
       icash: { title: "New iCash", body: "Online cash management for business accounts." },
       operatingAccounts: { title: "Operating Accounts", body: "Current and savings accounts for daily business." },
     },
+  },
+  esg: {
+    title: "ESG",
+    intro: "ESG is a framework that helps companies grow sustainably by focusing on three core pillars: Planet, People, and Principles, instead of just making a profit.",
+    definition: "ESG stands for Environmental, Social, and Governance. It is a framework used by businesses and investors to evaluate an organization's sustainability and ethical impact.",
+    examplesLabel: "Examples",
+    pillars: [
+      {
+        letter: "E",
+        title: "Environmental",
+        subtitle: "Planet",
+        body: "How a company impacts the earth and manages its natural resources.",
+        examples: [
+          "Apple designing products using 100% recycled aluminum to reduce waste.",
+          "Starbucks eliminating plastic straws and switching to eco-friendly lids.",
+          "A tech company powering its data centers entirely with solar and wind energy.",
+        ],
+      },
+      {
+        letter: "S",
+        title: "Social",
+        subtitle: "People",
+        body: "How a company treats people, including employees, customers, and communities.",
+        examples: [
+          "Nike ensuring fair wages and safe working conditions for factory workers worldwide.",
+          "Google providing mental health days and excellent healthcare benefits for employees.",
+          "A bank offering lower-interest loans to help local, low-income communities start businesses.",
+        ],
+      },
+      {
+        letter: "G",
+        title: "Governance",
+        subtitle: "Principles",
+        body: "How a company is managed behind closed doors to ensure honesty and fairness.",
+        examples: [
+          "Microsoft maintaining a diverse board of directors with mixed genders and backgrounds to avoid biased decisions.",
+          "A pharmaceutical firm having strict zero-tolerance policies against bribery and corruption.",
+          "Public companies disclosing accurate financial reports so shareholders are never cheated.",
+        ],
+      },
+    ],
+    learnMore: "Learn more about ESG standards",
+    learnMoreHint: "SET ESG Academy · opens in a new tab",
   },
   assistant: {
     title: "AI Sales Assistant",
@@ -300,7 +343,7 @@ const th: Messages = {
       crossSell: "บัตร การชำระเงิน บัญชี และความคุ้มครอง เพื่อเสนอควบคู่กับสินเชื่อ",
       calculator: "ประมาณค่างวดรายเดือนพร้อมความคุ้มครองแบบเลือกได้",
       aiAssistant: "ผู้ช่วยตัวอย่างสำหรับเตรียมการพบลูกค้า ค้นหาผลิตภัณฑ์ และนำทางในแอป",
-      esgNavigator: "แนวทางด้านความยั่งยืนสำหรับการสนทนากับลูกค้า",
+      esgNavigator: "พื้นฐาน ESG — โลก ผู้คน และหลักการ — สำหรับการสนทนากับลูกค้า",
     },
   },
   crossSellHub: {
@@ -316,6 +359,49 @@ const th: Messages = {
       icash: { title: "New iCash", body: "บริการบริหารเงินสดออนไลน์สำหรับบัญชีธุรกิจ" },
       operatingAccounts: { title: "Operating Accounts", body: "บัญชีกระแสรายวันและออมทรัพย์สำหรับธุรกิจประจำวัน" },
     },
+  },
+  esg: {
+    title: "ESG",
+    intro: "ESG คือกรอบแนวคิดที่ช่วยให้บริษัทเติบโตอย่างยั่งยืน โดยให้ความสำคัญกับสามเสาหลัก ได้แก่ โลก (Planet) ผู้คน (People) และหลักการ (Principles) มากกว่าการแสวงหากำไรเพียงอย่างเดียว",
+    definition: "ESG ย่อมาจาก Environmental, Social และ Governance (สิ่งแวดล้อม สังคม และธรรมาภิบาล) เป็นกรอบที่ธุรกิจและนักลงทุนใช้ประเมินความยั่งยืนและผลกระทบเชิงจริยธรรมขององค์กร",
+    examplesLabel: "ตัวอย่าง",
+    pillars: [
+      {
+        letter: "E",
+        title: "Environmental",
+        subtitle: "Planet",
+        body: "วิธีที่บริษัทส่งผลกระทบต่อโลกและบริหารจัดการทรัพยากรธรรมชาติ",
+        examples: [
+          "Apple ออกแบบผลิตภัณฑ์ด้วยอะลูมิเนียมรีไซเคิล 100% เพื่อลดขยะ",
+          "Starbucks เลิกใช้หลอดพลาสติกและเปลี่ยนมาใช้ฝาที่เป็นมิตรต่อสิ่งแวดล้อม",
+          "บริษัทเทคโนโลยีใช้พลังงานแสงอาทิตย์และพลังงานลมสำหรับศูนย์ข้อมูลทั้งหมด",
+        ],
+      },
+      {
+        letter: "S",
+        title: "Social",
+        subtitle: "People",
+        body: "วิธีที่บริษัทดูแลผู้คน ทั้งพนักงาน ลูกค้า และชุมชน",
+        examples: [
+          "Nike ดูแลให้แรงงานในโรงงานทั่วโลกได้รับค่าจ้างที่เป็นธรรมและสภาพการทำงานที่ปลอดภัย",
+          "Google มอบวันหยุดเพื่อสุขภาพจิตและสวัสดิการด้านสุขภาพที่ดีเยี่ยมให้พนักงาน",
+          "ธนาคารเสนอสินเชื่อดอกเบี้ยต่ำเพื่อช่วยชุมชนรายได้น้อยในท้องถิ่นเริ่มต้นธุรกิจ",
+        ],
+      },
+      {
+        letter: "G",
+        title: "Governance",
+        subtitle: "Principles",
+        body: "วิธีที่บริษัทได้รับการบริหารจัดการภายในเพื่อความซื่อสัตย์และเป็นธรรม",
+        examples: [
+          "Microsoft มีคณะกรรมการที่หลากหลายทั้งเพศและภูมิหลัง เพื่อหลีกเลี่ยงการตัดสินใจที่มีอคติ",
+          "บริษัทยามีนโยบายไม่ยอมรับการติดสินบนและการทุจริตทุกรูปแบบอย่างเคร่งครัด",
+          "บริษัทจดทะเบียนเปิดเผยรายงานทางการเงินที่ถูกต้อง เพื่อไม่ให้ผู้ถือหุ้นถูกเอาเปรียบ",
+        ],
+      },
+    ],
+    learnMore: "เรียนรู้เพิ่มเติมเกี่ยวกับมาตรฐาน ESG",
+    learnMoreHint: "SET ESG Academy · เปิดในแท็บใหม่",
   },
   assistant: {
     title: "ผู้ช่วยการขาย AI",
