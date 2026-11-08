@@ -13,6 +13,7 @@ import type { LoanProduct, LoanProductId } from "@/types/finance";
 export const LOAN_PRODUCTS: LoanProduct[] = [
   {
     id: "sme",
+    moreInfoUrl: "https://www.bangkokbank.com/en/business-banking/finance-my-business/loans-for-smes/business-loans",
     name: { en: "SME Business Loan", th: "สินเชื่อธุรกิจ SME" },
     shortName: { en: "SME Business", th: "SME ธุรกิจ" },
     tagline: { en: "Working capital for growing businesses", th: "เงินทุนหมุนเวียนสำหรับธุรกิจที่กำลังเติบโต" },
@@ -42,6 +43,7 @@ export const LOAN_PRODUCTS: LoanProduct[] = [
   },
   {
     id: "personal",
+    moreInfoUrl: "https://www.bangkokbank.com/th/personal/my-family-and-me/personal-loan",
     name: { en: "Personal Loan", th: "สินเชื่อส่วนบุคคล" },
     shortName: { en: "Personal", th: "ส่วนบุคคล" },
     tagline: { en: "Flexible funds for life's plans", th: "เงินทุนยืดหยุ่นสำหรับแผนชีวิตของคุณ" },
@@ -71,6 +73,7 @@ export const LOAN_PRODUCTS: LoanProduct[] = [
   },
   {
     id: "home",
+    moreInfoUrl: "https://www.bangkokbank.com/en/personal/my-home/home-loan",
     name: { en: "Home Loan", th: "สินเชื่อบ้าน" },
     shortName: { en: "Home", th: "บ้าน" },
     tagline: { en: "A long-term partner for your home", th: "คู่คิดระยะยาวสำหรับบ้านของคุณ" },

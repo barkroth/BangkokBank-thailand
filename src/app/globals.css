@@ -138,11 +138,11 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Navbar matches the Bangkok Bank icon background. */
+/* Navbar uses the bangkokbank.com header navy. */
 .site-header {
-  --surface: #11117d;
-  --surface-2: #1b1b92;
-  background-color: #11117d;
+  --surface: #1e3050;
+  --surface-2: #273d63;
+  background-color: #1e3050;
   border-bottom-color: rgba(248, 250, 252, 0.1);
   box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.6);
 }

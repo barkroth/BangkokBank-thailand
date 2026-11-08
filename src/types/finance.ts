@@ -48,6 +48,8 @@ export interface LoanProduct {
   /** Annual interest rate in percent, e.g. 6.5 means 6.5% p.a. */
   annualRate: NumericRange & { default: number; quickPicks: number[] };
   fee: FeeRule;
+  /** Official product page on bangkokbank.com, shown as "More information". */
+  moreInfoUrl: string;
 }
 
 export interface InsuranceOption {

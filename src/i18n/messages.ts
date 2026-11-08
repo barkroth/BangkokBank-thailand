@@ -234,6 +234,8 @@ const en = {
     tenure: "Tenure",
     years: (years: number) => `${years} yrs`,
     calculate: "Calculate this loan",
+    moreInfo: "More information",
+    moreInfoHint: "Opens bangkokbank.com in a new tab",
   },
   insurance: {
     eyebrow: "Insurance",
@@ -515,6 +517,8 @@ const th: Messages = {
     tenure: "ระยะเวลา",
     years: (years: number) => `${years} ปี`,
     calculate: "คำนวณสินเชื่อนี้",
+    moreInfo: "ข้อมูลเพิ่มเติม",
+    moreInfoHint: "เปิดเว็บไซต์ธนาคารกรุงเทพในแท็บใหม่",
   },
   insurance: {
     eyebrow: "ประกันภัย",

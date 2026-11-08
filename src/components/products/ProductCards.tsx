@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import type { LoanProductId } from "@/types/finance";
 import { LOAN_PRODUCTS } from "@/data/loan-products";
 import { useI18n } from "@/hooks/use-i18n";
@@ -66,6 +66,18 @@ export function ProductCards({ selectedId, onCalculate }: ProductCardsProps) {
                       {text(highlight)}
                     </li>
                   ))}
+                  <li>
+                    <a
+                      href={product.moreInfoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${t.products.moreInfo}: ${text(product.name)} — ${t.products.moreInfoHint}`}
+                      className="group inline-flex items-center gap-2 rounded font-semibold text-accent-ink underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                    >
+                      <ArrowUpRight className="size-4 shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
+                      {t.products.moreInfo}
+                    </a>
+                  </li>
                 </ul>
 
                 <div className="mt-auto pt-5">
