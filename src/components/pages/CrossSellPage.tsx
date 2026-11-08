@@ -10,6 +10,7 @@ import { Tabs, type TabItem } from "@/components/ui/Tabs";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { InsuranceSection } from "@/components/sections/InsuranceSection";
 import { CampaignBanner } from "@/components/sections/CampaignBanner";
+import { CrossSellProducts } from "@/components/sections/CrossSellProducts";
 
 export function CrossSellPage() {
   const calculator = useCalculator();
@@ -38,8 +39,11 @@ export function CrossSellPage() {
   return (
     <>
       <PageHeader title={t.nav.crossSell} description={t.modules.descriptions.crossSell} />
-      <Container className="pb-6">
-        <Tabs key={items.length} label={t.modules.tabsLabel} items={items} />
+      <Container className="flex flex-col gap-8 pb-6">
+        <CrossSellProducts />
+        <div id="insurance" className="scroll-mt-24">
+          <Tabs key={items.length} label={t.modules.tabsLabel} items={items} />
+        </div>
       </Container>
     </>
   );

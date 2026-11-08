@@ -35,7 +35,7 @@ src/
     calculator/        LoanCalculator, CalculatorResults, PaymentSchedule, InsuranceSelector
     products/          ProductCards, ProductIcon
     pages/             CalculatorPage, LoanProductsPage, CrossSellPage (route content)
-    sections/          Dashboard, PlannedModule, InsuranceSection, CampaignBanner, ProductComparison, ContactSection
+    sections/          Dashboard, PlannedModule, InsuranceSection, CampaignBanner, ProductComparison
     layout/            AppShell, Header, PageHeader, PresentationBar, Footer, BrandMark, ThemeToggle
     ui/                Button, SliderField, DemoBadge, Tabs, Container
   context/             presentation-context (presentation mode), calculator-context (calculator state shared across routes),
@@ -48,11 +48,7 @@ src/
     theme.ts           dark/light handling
     assistant/         demo-responder.ts (scripted demo answers, demo data only) + assistant-service.ts
                        (AssistantService interface; swap in a server-side backend later)
-  data/                demo products, insurance, campaign, contacts, navigation
+  data/                demo products, insurance, campaign, cross-sell products, navigation
   types/finance.ts     shared TypeScript types
 ```
 
-## Configuring contact buttons
-
-Copy `.env.example` to `.env.local`, fill in the public LINE URL, WhatsApp number and phone number, then
-restart `npm run dev`. Until set, the buttons show a "Placeholder" badge.

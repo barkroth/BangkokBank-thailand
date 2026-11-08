@@ -1,10 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
   BookOpen,
   Calculator,
+  ChevronRight,
   Landmark,
   Leaf,
   ShieldCheck,
@@ -16,7 +18,6 @@ import { useI18n } from "@/hooks/use-i18n";
 import { cn } from "@/lib/ui";
 import { Container } from "@/components/ui/Container";
 import { DemoBadge } from "@/components/ui/DemoBadge";
-import { ContactSection } from "@/components/sections/ContactSection";
 
 const ICONS: Record<ModuleKey, LucideIcon> = {
   calculator: Calculator,
@@ -34,13 +35,31 @@ export function Dashboard() {
   return (
     <div className="relative flex-1 bg-surface">
       <Container className="relative flex h-full flex-col gap-5 py-5 sm:py-7 xl:gap-7">
-        <div className="animate-fade-up max-w-3xl">
-          <DemoBadge>{t.hero.badge}</DemoBadge>
-          <h1 className="mt-3 font-display text-4xl font-semibold leading-[1.05] tracking-tight text-fg sm:text-5xl xl:text-6xl">
-            {t.hero.headingStart} <span className="italic text-accent-ink">{t.hero.headingEmphasis}</span>
-          </h1>
-          <p className="mt-2 max-w-xl text-base leading-relaxed text-muted sm:text-lg lg:text-base xl:text-lg">{t.hero.support}</p>
-        </div>
+        <section className="animate-fade-up relative isolate overflow-hidden rounded-3xl bg-[#0b2f7a] shadow-card">
+          <Image
+            src="/images/ro-smart-hub-bg.jpg"
+            alt=""
+            fill
+            priority
+            sizes="(min-width: 1280px) 1280px, 100vw"
+            className="-z-10 object-cover object-[70%_center] sm:object-right"
+          />
+          <div aria-hidden className="absolute inset-0 -z-10 bg-linear-to-r from-[#0b2f7a]/95 via-[#0b2f7a]/70 to-transparent sm:via-[#0b2f7a]/40" />
+
+          <div className="flex min-h-56 flex-col justify-center gap-3 px-6 py-7 sm:min-h-64 sm:px-10 lg:min-h-72 xl:px-12">
+            <DemoBadge>{t.hero.badge}</DemoBadge>
+            <h1 className="flex items-center gap-2 font-display text-4xl font-bold leading-none tracking-tight text-white sm:text-5xl xl:text-6xl">
+              <ChevronRight className="size-9 shrink-0 text-sky-400 sm:size-11 xl:size-14" strokeWidth={3} aria-hidden />
+              {t.hero.title}
+            </h1>
+            <p className="text-lg font-semibold text-white sm:text-xl xl:text-2xl">{t.hero.tagline}</p>
+            <p className="max-w-md text-sm leading-relaxed text-blue-100/90 sm:text-base">{t.hero.support}</p>
+          </div>
+
+          <p className="absolute right-6 top-6 hidden max-w-56 rounded-2xl border border-white/40 bg-white/15 px-5 py-4 text-right text-base font-semibold leading-snug text-white shadow-lg backdrop-blur-md lg:block xl:right-10 xl:max-w-64 xl:text-lg">
+            {t.hero.callout}
+          </p>
+        </section>
 
         <nav aria-label={t.modules.dashboard} className="animate-fade-up" style={{ animationDelay: "120ms" }}>
           <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 lg:gap-4">
@@ -78,10 +97,6 @@ export function Dashboard() {
             })}
           </ul>
         </nav>
-
-        <div className="mt-auto">
-          <ContactSection />
-        </div>
       </Container>
     </div>
   );

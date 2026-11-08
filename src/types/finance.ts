@@ -72,16 +72,6 @@ export interface Campaign {
   ctaLabel: Localized;
 }
 
-export interface ContactChannel {
-  id: "line" | "whatsapp" | "phone";
-  label: Localized;
-  description: Localized;
-  href: string;
-  displayValue: string;
-  /** True while the destination is still a placeholder (not configured). */
-  isPlaceholder: boolean;
-}
-
 /* ------------------------------------------------------------------ */
 /* Calculator                                                          */
 /* ------------------------------------------------------------------ */

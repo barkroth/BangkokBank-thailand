@@ -40,10 +40,10 @@ const en = {
   presentation: { exit: "Exit", exitFull: "Exit presentation" },
   hero: {
     badge: "Prototype · Illustrative figures only",
-    headingStart: "Your Financial",
-    headingEmphasis: "Solution",
-    support:
-      "Explore loan and protection options together — clear numbers, explained side by side, in a single conversation.",
+    title: "RO Smart Hub",
+    tagline: "One Platform. One RO. Every Opportunity.",
+    support: "All your data, tools and business opportunities — in one place.",
+    callout: "Complete data. Easier work. More opportunities.",
   },
   modules: {
     dashboard: "Dashboard",
@@ -58,14 +58,27 @@ const en = {
     tabCompare: "Compare",
     tabInsurance: "Insurance",
     tabCampaign: "Campaign",
-    contactTitle: "Contact",
     descriptions: {
       knowledgeHub: "Reference material and product knowledge for staff.",
       loanProducts: "Loan product profiles and side-by-side comparison.",
-      crossSell: "Optional loan protection plans and campaign talking points.",
+      crossSell: "Cards, payments, accounts and protection to offer alongside a loan.",
       calculator: "Estimate a monthly instalment with optional protection.",
       aiAssistant: "Demo assistant for meeting preparation, product discovery and navigation.",
       esgNavigator: "Sustainability-focused guidance for customer conversations.",
+    },
+  },
+  crossSellHub: {
+    title: "Products to offer",
+    subtitle: "Open a product page on bangkokbank.com, or review protection plans below.",
+    external: "Opens bangkokbank.com in a new tab",
+    inPage: "View plans on this page",
+    items: {
+      commercialCards: { title: "Commercial Cards", body: "Corporate cards for business spending and expense control." },
+      creditCards: { title: "Credit Cards", body: "Personal credit cards with rewards and privileges." },
+      edc: { title: "EDC", body: "Card payment terminals for the customer's shop." },
+      insurance: { title: "Insurance", body: "Optional loan protection plans." },
+      icash: { title: "New iCash", body: "Online cash management for business accounts." },
+      operatingAccounts: { title: "Operating Accounts", body: "Current and savings accounts for daily business." },
     },
   },
   assistant: {
@@ -213,14 +226,6 @@ const en = {
     feeValue: (percent: number, min: string, max: string) => `${percent}% (min ${min}, max ${max})`,
     exampleValue: (monthly: string, amount: string, months: number) => `${monthly} on ${amount} / ${months} mo`,
   },
-  contact: {
-    eyebrow: "Contact",
-    title: "Continue the conversation",
-    description: "Reach your relationship officer or insurance specialist on the channel you prefer.",
-    noteBefore: "Prototype note: contact destinations are placeholders. Set real public values in",
-    noteMiddle: "(see",
-    noteAfter: ").",
-  },
   footer: {
     title: "Illustrative calculations only",
     body: "All products, interest rates, fees, insurance premiums, campaigns and results shown in this prototype are demo data for illustration and discussion. They are not an offer, quotation, approval or advice, and do not represent official Bangkok Bank products, rates, formulas or terms. Actual terms depend on approved product criteria and individual assessment.",
@@ -272,9 +277,10 @@ const th: Messages = {
   presentation: { exit: "ออก", exitFull: "ออกจากโหมดนำเสนอ" },
   hero: {
     badge: "ต้นแบบ · ตัวเลขเพื่อการประกอบภาพเท่านั้น",
-    headingStart: "ทางออกทางการเงิน",
-    headingEmphasis: "ของคุณ",
-    support: "ร่วมสำรวจตัวเลือกสินเชื่อและความคุ้มครองไปด้วยกัน ตัวเลขชัดเจน อธิบายเทียบกันได้ในการสนทนาเดียว",
+    title: "RO Smart Hub",
+    tagline: "One Platform. One RO. Every Opportunity.",
+    support: "รวมทุกข้อมูล เครื่องมือ และโอกาสทางธุรกิจ ไว้ในที่เดียว",
+    callout: "ข้อมูลครบ ทำงานง่ายขึ้น สร้างโอกาสได้มากกว่า",
   },
   modules: {
     dashboard: "แดชบอร์ด",
@@ -288,14 +294,27 @@ const th: Messages = {
     tabCompare: "เปรียบเทียบ",
     tabInsurance: "ประกันภัย",
     tabCampaign: "แคมเปญ",
-    contactTitle: "ติดต่อ",
     descriptions: {
       knowledgeHub: "เอกสารอ้างอิงและความรู้ผลิตภัณฑ์สำหรับเจ้าหน้าที่",
       loanProducts: "ข้อมูลผลิตภัณฑ์สินเชื่อและการเปรียบเทียบเคียงข้างกัน",
-      crossSell: "ประกันคุ้มครองสินเชื่อแบบเลือกได้และประเด็นแคมเปญ",
+      crossSell: "บัตร การชำระเงิน บัญชี และความคุ้มครอง เพื่อเสนอควบคู่กับสินเชื่อ",
       calculator: "ประมาณค่างวดรายเดือนพร้อมความคุ้มครองแบบเลือกได้",
       aiAssistant: "ผู้ช่วยตัวอย่างสำหรับเตรียมการพบลูกค้า ค้นหาผลิตภัณฑ์ และนำทางในแอป",
       esgNavigator: "แนวทางด้านความยั่งยืนสำหรับการสนทนากับลูกค้า",
+    },
+  },
+  crossSellHub: {
+    title: "ผลิตภัณฑ์ที่เสนอได้",
+    subtitle: "เปิดหน้าผลิตภัณฑ์บน bangkokbank.com หรือดูแผนความคุ้มครองด้านล่าง",
+    external: "เปิด bangkokbank.com ในแท็บใหม่",
+    inPage: "ดูแผนในหน้านี้",
+    items: {
+      commercialCards: { title: "Commercial Cards", body: "บัตรองค์กรสำหรับค่าใช้จ่ายธุรกิจและการควบคุมงบประมาณ" },
+      creditCards: { title: "Credit Cards", body: "บัตรเครดิตส่วนบุคคลพร้อมสิทธิประโยชน์" },
+      edc: { title: "EDC", body: "เครื่องรับชำระเงินด้วยบัตรสำหรับร้านค้าของลูกค้า" },
+      insurance: { title: "Insurance", body: "ประกันคุ้มครองสินเชื่อแบบเลือกได้" },
+      icash: { title: "New iCash", body: "บริการบริหารเงินสดออนไลน์สำหรับบัญชีธุรกิจ" },
+      operatingAccounts: { title: "Operating Accounts", body: "บัญชีกระแสรายวันและออมทรัพย์สำหรับธุรกิจประจำวัน" },
     },
   },
   assistant: {
@@ -439,14 +458,6 @@ const th: Messages = {
     tenureValue: (min: number, max: number) => `${min} – ${max} เดือน`,
     feeValue: (percent: number, min: string, max: string) => `${percent}% (ขั้นต่ำ ${min}, สูงสุด ${max})`,
     exampleValue: (monthly: string, amount: string, months: number) => `${monthly} จาก ${amount} / ${months} เดือน`,
-  },
-  contact: {
-    eyebrow: "ติดต่อ",
-    title: "สนทนาต่อกับเรา",
-    description: "ติดต่อเจ้าหน้าที่ดูแลลูกค้าหรือผู้เชี่ยวชาญด้านประกันผ่านช่องทางที่คุณสะดวก",
-    noteBefore: "หมายเหตุต้นแบบ: ช่องทางติดต่อเป็นข้อมูลสมมติ กำหนดค่าจริงที่เปิดเผยได้ในไฟล์",
-    noteMiddle: "(ดู",
-    noteAfter: ")",
   },
   footer: {
     title: "การคำนวณเป็นเพียงตัวอย่างเท่านั้น",
