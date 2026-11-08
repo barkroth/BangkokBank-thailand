@@ -47,7 +47,6 @@ export function Dashboard() {
           <div aria-hidden className="absolute inset-0 -z-10 bg-linear-to-r from-[#0b2f7a]/95 via-[#0b2f7a]/70 to-transparent sm:via-[#0b2f7a]/40" />
 
           <div className="flex min-h-56 flex-col justify-center gap-3 px-6 py-7 sm:min-h-64 sm:px-10 lg:min-h-72 xl:px-12">
-            <DemoBadge className="self-start border-white/30! bg-white/10! text-white!">{t.hero.badge}</DemoBadge>
             <h1 className="flex items-center gap-2 font-display text-4xl font-bold leading-none tracking-tight text-white sm:text-5xl xl:text-6xl">
               <ChevronRight className="size-9 shrink-0 text-sky-400 sm:size-11 xl:size-14" strokeWidth={3} aria-hidden />
               {t.hero.title}

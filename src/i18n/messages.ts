@@ -39,7 +39,6 @@ const en = {
   },
   presentation: { exit: "Exit", exitFull: "Exit presentation" },
   hero: {
-    badge: "Prototype · Illustrative figures only",
     title: "RO Smart Hub",
     tagline: "One Platform. One RO. Every Opportunity.",
     support: "All your data, tools and business opportunities — in one place.",
@@ -319,7 +318,6 @@ const th: Messages = {
   },
   presentation: { exit: "ออก", exitFull: "ออกจากโหมดนำเสนอ" },
   hero: {
-    badge: "ต้นแบบ · ตัวเลขเพื่อการประกอบภาพเท่านั้น",
     title: "RO Smart Hub",
     tagline: "One Platform. One RO. Every Opportunity.",
     support: "รวมทุกข้อมูล เครื่องมือ และโอกาสทางธุรกิจ ไว้ในที่เดียว",
