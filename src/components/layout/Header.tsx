@@ -73,7 +73,7 @@ export function Header() {
         id="mobile-nav"
         aria-label={t.header.mobileNav}
         className={cn(
-          "absolute inset-x-0 top-full border-t border-line bg-brand shadow-card xl:hidden",
+          "absolute inset-x-0 top-full border-t border-line bg-[#11117d] shadow-card xl:hidden",
           menuOpen ? "block" : "hidden",
         )}
       >
