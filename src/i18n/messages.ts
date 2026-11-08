@@ -42,7 +42,7 @@ const en = {
     title: "RO Smart Hub",
     tagline: "One Platform. One RO. Every Opportunity.",
     support: "All your data, tools and business opportunities — in one place.",
-    callout: "Complete data. Easier work. More opportunities.",
+    callout: ["Complete data.", "Easier work.", "More opportunities."],
   },
   modules: {
     dashboard: "Dashboard",
@@ -328,7 +328,7 @@ const th: Messages = {
     title: "RO Smart Hub",
     tagline: "หนึ่งแพลตฟอร์ม หนึ่ง RO ทุกโอกาสทางธุรกิจ",
     support: "รวมทุกข้อมูล เครื่องมือ และโอกาสทางธุรกิจ ไว้ในที่เดียว",
-    callout: "ข้อมูลครบ ทำงานง่ายขึ้น สร้างโอกาสได้มากกว่า",
+    callout: ["ข้อมูลครบ", "ทำงานง่ายขึ้น", "สร้างโอกาสได้มากกว่า"],
   },
   modules: {
     dashboard: "แดชบอร์ด",

@@ -11,16 +11,15 @@ export function BrandMark({ showBadge = true }: { showBadge?: boolean }) {
 
   return (
     <Link href="/" className="group flex min-w-0 shrink-0 items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
-      <span className="relative size-10 shrink-0 overflow-hidden rounded-xl shadow-sm ring-1 ring-white/15" aria-hidden>
-        <Image
-          src="/images/bangkok-bank-logo.png"
-          alt=""
-          width={256}
-          height={259}
-          priority
-          className="absolute -left-[26px] -top-[22px] h-auto w-[92px] max-w-none"
-        />
-      </span>
+      <Image
+        src="/images/bangkok-bank-mark.png"
+        alt=""
+        aria-hidden
+        width={88}
+        height={116}
+        priority
+        className="h-9 w-auto shrink-0"
+      />
       <span className="min-w-0 leading-none">
         <span className="block whitespace-nowrap font-display text-lg font-semibold tracking-tight text-fg sm:text-[1.4rem]">
           {t.brand.name}

@@ -56,8 +56,12 @@ export function Dashboard() {
           </div>
 
           <div className="pointer-events-none absolute right-0 top-1/2 hidden aspect-[2048/686] w-full -translate-y-1/2 lg:block">
-            <p className="absolute left-[82.4%] top-[28.4%] flex h-[30.1%] w-[15.9%] items-center justify-end p-[1.1%] text-right text-xs font-semibold leading-snug text-white drop-shadow-[0_1px_6px_rgba(11,47,122,0.55)] xl:text-sm 2xl:text-base">
-              {t.hero.callout}
+            <p className="absolute left-[82.4%] top-[28.4%] flex h-[30.1%] w-[15.9%] flex-col items-end justify-center p-[1.1%] text-right text-xs font-semibold leading-snug text-white drop-shadow-[0_1px_6px_rgba(11,47,122,0.55)] xl:text-sm 2xl:text-base">
+              {t.hero.callout.map((line) => (
+                <span key={line} className="block whitespace-nowrap">
+                  {line}
+                </span>
+              ))}
             </p>
           </div>
         </section>
