@@ -56,7 +56,7 @@ export function Dashboard() {
             <p className="max-w-md text-sm leading-relaxed text-blue-100/90 sm:text-base">{t.hero.support}</p>
           </div>
 
-          <p className="absolute right-6 top-6 hidden max-w-56 rounded-2xl border border-white/40 bg-white/15 px-5 py-4 text-right text-base font-semibold leading-snug text-white shadow-lg backdrop-blur-md lg:block xl:right-10 xl:max-w-64 xl:text-lg">
+          <p className="absolute right-3 top-4 hidden max-w-44 rounded-2xl border border-white/40 bg-white/15 px-4 py-3 text-right text-sm font-semibold leading-snug text-white shadow-lg backdrop-blur-md lg:block xl:right-4 xl:max-w-52 xl:text-base">
             {t.hero.callout}
           </p>
         </section>
